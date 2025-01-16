@@ -1,0 +1,12 @@
+{
+  "name": "hexo-theme-yoruumo",
+  "version": "1.0.0",
+  "description": "Hexo Theme Landscape",
+  "repository": "CreativityUnlimited/hexo-theme-YoruKumo",
+  "keywords": [
+    "hexo",
+    "theme",
+    "YoruKumo"
+  ],
+  "license": "MIT"
+}
