@@ -8,5 +8,8 @@
     "theme",
     "YoruKumo"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hexo-renderer-stylus": "^2.1.0"
+  }
 }
