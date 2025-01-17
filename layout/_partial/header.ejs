@@ -1,9 +1,9 @@
-<div class="header-container" id="header">
+<div class="header-container">
   <div class="logo">
     <a href="<%- url_for('/') %>">
       <% if (theme.logo) { %>
-      <img src="<%- url_for(theme.logo) %>" alt="<%= config.title %>" />
-      <% } else { %> <%= config.title %> <% } %>
+      <img src="<%- url_for(theme.logo) %>" alt="<%= theme.title %>" />
+      <% } else { %> <%= theme.title %> <% } %>
     </a>
   </div>
 
@@ -15,9 +15,10 @@
 
   <nav class="nav-menu">
     <ul class="nav-list">
-      <li><a href="<%- url_for('/') %>">首页</a></li>
       <% if (theme.menu) { %> <% for (let i in theme.menu) { %>
-      <li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
+      <li>
+        <a href="<%- url_for(theme.menu[i]) %>"><%= __(`menu.${i}`) %></a>
+      </li>
       <% } %> <% } %>
     </ul>
   </nav>

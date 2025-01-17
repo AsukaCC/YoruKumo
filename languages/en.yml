@@ -1,4 +1,7 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`) Fly on the Wall'
-
 title: Title
+menu:
+  Home: /
+  About: /about/
+  Archives: /archives/
