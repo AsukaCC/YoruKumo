@@ -1,4 +1,4 @@
-<div class="header-container">
+<div id="header-container" class="header-normal">
   <div class="logo">
     <a href="<%- url_for('/') %>">
       <% if (theme.logo) { %>
@@ -7,7 +7,7 @@
     </a>
   </div>
 
-  <button class="menu-toggle" aria-label="Toggle Menu">
+  <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
     <span></span>
     <span></span>
     <span></span>

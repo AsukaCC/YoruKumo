@@ -1,0 +1,127 @@
+.post-container
+  padding: 6rem 2rem 2rem
+  max-width: 1200px
+  margin: 0 auto
+
+.post-content
+  background: var(--secondary-color)
+  padding: 2rem
+  border-radius: 1rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+
+.post-header
+  margin-bottom: 2rem
+  text-align: center
+
+.post-title
+  font-size: 2rem
+  color: var(--text-color)
+  margin-bottom: 1rem
+
+.post-meta
+  color: var(--text-color-secondary)
+  font-size: 0.9rem
+  display: flex
+  justify-content: center
+  gap: 1.5rem
+  flex-wrap: wrap
+
+  i
+    margin-right: 0.5rem
+
+.post-time,
+.post-categories,
+.post-tags
+  display: flex
+  align-items: center
+
+.post-category,
+.post-tag
+  color: var(--text-color)
+  text-decoration: none
+  margin: 0 0.3rem
+
+  &:hover
+    color: var(--primary-color)
+
+.post-body
+  color: var(--text-color)
+  line-height: 1.8
+  font-size: 1.1rem
+
+  h1, h2, h3, h4, h5, h6
+    margin: 1.5rem 0 1rem
+    color: var(--text-color)
+
+  p
+    margin: 1rem 0
+
+  img
+    max-width: 100%
+    height: auto
+    display: block
+    margin: 1rem auto
+    border-radius: 0.5rem
+
+  a
+    color: var(--primary-color)
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+  code
+    background: var(--main-color)
+    padding: 0.2rem 0.4rem
+    border-radius: 0.3rem
+    font-family: monospace
+
+  pre
+    background: var(--main-color)
+    padding: 1rem
+    border-radius: 0.5rem
+    overflow-x: auto
+    margin: 1rem 0
+
+    code
+      background: none
+      padding: 0
+
+  blockquote
+    border-left: 4px solid var(--primary-color)
+    margin: 1rem 0
+    padding: 0.5rem 1rem
+    background: var(--main-color)
+    border-radius: 0 0.5rem 0.5rem 0
+
+  ul, ol
+    margin: 1rem 0 1rem 2rem
+
+  table
+    width: 100%
+    border-collapse: collapse
+    margin: 1rem 0
+
+    th, td
+      border: 1px solid var(--border-color)
+      padding: 0.5rem
+
+    th
+      background: var(--main-color)
+
+@media (max-width: 768px)
+  .post-container
+    padding: 5rem 1rem 1rem
+
+  .post-content
+    padding: 1rem
+
+  .post-title
+    font-size: 1.5rem
+
+  .post-meta
+    gap: 1rem
+    justify-content: flex-start
+
+  .post-body
+    font-size: 1rem
