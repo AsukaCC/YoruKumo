@@ -54,10 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   menuLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    // 修复路径匹配逻辑
+    // 改进路径匹配逻辑，避免首页链接在其他页面被错误激活
     if (
       currentPath === href ||
-      (href !== '/' && currentPath.startsWith(href))
+      (href !== '/' &&
+        currentPath.startsWith(href) &&
+        // 确保当前路径后面紧跟着 '/' 或者已经结束
+        (currentPath.length === href.length ||
+          currentPath[href.length] === '/'))
     ) {
       link.classList.add('active');
     }
