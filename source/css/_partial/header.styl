@@ -3,7 +3,6 @@
   width: 100%
   top: 0
   z-index: 1000
-  transition: background-color 1s ease
   height:  4rem
   padding: 1rem 2rem
   box-sizing: border-box
@@ -11,14 +10,18 @@
   justify-content space-between
   align-items center
   color: var(--text-color)
+  transition: background-color 1s ease
 
 .header-top
   transform: translateY(0)
   background: transparent
 
-.header-normal
+.header-normal,
+.header-mobile
   transform: translateY(0)
-  background: var(--main-color)
+  background:var(--shadow-color)
+  backdrop-filter: blur(2px)
+
 
 
 .header-hidden

@@ -1,0 +1,76 @@
+.pagination
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 1rem
+  padding: 2rem 0
+  margin-top: 2rem
+  min-height: 2.5rem
+
+.pagination-placeholder
+  height: 2.5rem
+  width: 100%
+
+.pagination-numbers
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+.pagination-item
+  display: flex
+  align-items: center
+  justify-content: center
+  min-width: 2.5rem
+  height: 2.5rem
+  padding: 0 0.5rem
+  border-radius: 0.5rem
+  color: var(--text-color)
+  text-decoration: none
+  transition: all 0.2s ease
+  background: var(--secondary-color)
+  font-size: 0.9rem
+
+  &:hover:not(.disabled)
+    background: var(--primary-color)
+    color: var(--secondary-text-color)
+    transform: translateY(-2px)
+
+  &.current
+    background: var(--primary-color)
+    color: var(--secondary-text-color)
+    font-weight: bold
+    transform: none
+
+  &.disabled
+    opacity: 0.5
+    cursor: not-allowed
+    pointer-events: none
+
+.pagination-ellipsis
+  color: var(--text-color-secondary)
+  padding: 0 0.2rem
+  user-select: none
+
+.prev, .next
+  background: var(--secondary-color)
+  min-width: 2.5rem
+  padding: 0
+
+  i
+    font-size: 1rem
+
+@media (max-width: 768px)
+  .pagination
+    flex-wrap: wrap
+
+  .pagination-numbers
+    order: 0
+    flex: 1
+    justify-content: center
+    flex-wrap: wrap
+
+  .prev
+    order: -1
+
+  .next
+    order: 1

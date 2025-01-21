@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
 
+      if (navMenu.classList.contains('active')) return;
       // 下滑隐藏，上滑显示
       if (scrollTop === 0) {
         header.className = 'header-top';
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     menuToggle.addEventListener('click', function () {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       navMenu.classList.toggle('active');
+      header.classList.toggle('header-mobile');
       menuToggle.setAttribute('aria-expanded', !isExpanded);
     });
 

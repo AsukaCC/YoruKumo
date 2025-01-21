@@ -2,6 +2,6 @@ activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`) Fly on the Wall'
 title: Title
 menu:
-  Home: /
-  About: /about/
-  Archives: /archives/
+  Home: Home
+  Post: Post
+  About: About

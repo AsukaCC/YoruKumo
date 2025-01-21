@@ -1,28 +1,45 @@
+<!-- 头部 -->
 <%- partial('_partial/header',{}, {cache: true}) %>
-<article class="post-container">
-  <div class="post-content">
-    <header class="post-header">
-      <h1 class="post-title"><%= page.title %></h1>
-      <div class="post-meta">
-        <span class="post-time">
-          <i class="fas fa-calendar"></i>
-          <%= date(page.date, 'YYYY-MM-DD') %>
-        </span>
-        <% if (page.categories && page.categories.length) { %>
-        <span class="post-categories">
-          <i class="fas fa-folder"></i>
-          <%- list_categories(page.categories, { show_count: false, class:
-          'post-category', style: 'none', separator: ' ' }) %>
-        </span>
-        <% } %> <% if (page.tags && page.tags.length) { %>
-        <span class="post-tags">
-          <i class="fas fa-tags"></i>
-          <%- list_tags(page.tags, { show_count: false, class: 'post-tag',
-          style: 'none', separator: ' ' }) %>
-        </span>
-        <% } %>
-      </div>
-    </header>
-    <div class="post-body"><%- page.content %></div>
+
+<!-- 页面内容 -->
+<div class="page-content">
+  <div class="page-title">
+    <h2><%- __('menu.Post') %></h2>
   </div>
-</article>
+  <div class="page-body">
+    <div class="post-list">
+      <% var postsTotal = site.posts.length; %>
+      <!-- 文章总数 -->
+
+      <% var postsPerPage = theme.per_page; %>
+      <!-- 每页文章数 -->
+
+      <% var currentPage = page.current; %>
+      <!-- 当前页数 -->
+
+      <% site.posts.each(function(post){ %>
+      <!-- 遍历文章 -->
+      <% var year = date(post.date, 'YYYY'); %>
+
+      <!-- 每篇文章显示年份标题 -->
+      <div class="postItem-year">
+        <h3><%= year %></h3>
+      </div>
+
+      <!-- 文章链接 -->
+      <a href="<%- url_for(post.path) %>">
+        <div class="postItem">
+          <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
+            <%= post.title || '(无标题)' %>
+          </p>
+          <p><%= date(post.date, 'YYYY-MM-DD') %></p>
+          <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<!-- 分页 -->
+<%- partial('_partial/pagination') %>

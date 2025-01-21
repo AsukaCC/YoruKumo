@@ -1,11 +1,11 @@
 @import "_variables"
 @import "_partial/header"
 @import "_partial/footer"
+@import "_partial/pagination"
 @import "_partial/about"
-@import "_partial/archive"
 @import "_partial/post"
 @import "_widget/swiper"
-@import "_widget/latestPosts"
+@import "_widget/page"
 
 *
   margin 0
@@ -19,8 +19,8 @@ html
 body
   background-color var(--secondary-color)
   color var(--text-color)
-  width calc(100vw - 0.5rem) // 减去滚动条宽度
   min-height 100vh
+  min-width 320px
   display flex
   flex-direction column
 
@@ -35,7 +35,6 @@ a
 
 .body-page-view
   flex: 1
-  padding 1rem
   display flex
   flex-direction column
   align-items center
