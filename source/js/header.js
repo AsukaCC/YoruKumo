@@ -52,20 +52,25 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentPath = window.location.pathname;
   const menuLinks = document.querySelectorAll('.nav-list a');
 
+  // ... existing code ...
+
   menuLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    // 改进路径匹配逻辑，避免首页链接在其他页面被错误激活
+    // 获取当前路径的基础部分（移除分页部分）
+    let baseCurrentPath = currentPath.replace(/\/page\/\d+\/?$/, '/');
+
+    // 精确匹配逻辑
     if (
       currentPath === href ||
-      (href !== '/' &&
-        currentPath.startsWith(href) &&
-        // 确保当前路径后面紧跟着 '/' 或者已经结束
-        (currentPath.length === href.length ||
-          currentPath[href.length] === '/'))
+      baseCurrentPath === href ||
+      // 仅当 href 不是根路径且完全匹配时才激活
+      (href !== '/Blog/' && href === baseCurrentPath)
     ) {
       link.classList.add('active');
     }
   });
+
+  // ... existing code ...
 
   // 处理移动端菜单切换
   const menuToggleMobile = document.querySelector('.menu-toggle-mobile');

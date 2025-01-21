@@ -1,16 +1,20 @@
 @import "_variables"
 @import "_partial/header"
 @import "_partial/footer"
-@import "_widget/swiper"
 @import "_partial/about"
 @import "_partial/archive"
 @import "_partial/post"
+@import "_widget/swiper"
+@import "_widget/latestPosts"
 
 *
   margin 0
   padding 0
   box-sizing border-box
   font-family 'Roboto', sans-serif
+
+html
+  scroll-behavior smooth
 
 body
   background-color var(--secondary-color)

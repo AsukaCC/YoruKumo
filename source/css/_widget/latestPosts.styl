@@ -1,0 +1,45 @@
+.latest-posts-container
+  background: var(--secondary-color)
+  padding: 1.5rem
+  border-radius: 1rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+  margin-bottom: 2rem
+
+.latest-posts-content
+  width: 100%
+
+.latest-posts-title
+  font-size: 1.5rem
+  margin-bottom: 1.5rem
+  color: var(--text-color)
+  border-bottom: 2px solid var(--primary-color)
+  padding-bottom: 0.5rem
+
+.latest-posts-list
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+
+.latest-post-item
+  padding: 0.5rem 1rem
+  display: flex
+  align-items: center
+  transition: all 0.3s ease
+
+  &:hover
+    background: var(--hover-color)
+    border-radius: 0.5rem
+
+.latest-post-time
+  color: var(--text-color-secondary)
+  margin-right: 1rem
+  font-size: 0.9rem
+  min-width: 80px
+
+.latest-post-title
+  color: var(--text-color)
+  text-decoration: none
+  font-size: 1rem
+
+  &:hover
+    color: var(--primary-color)

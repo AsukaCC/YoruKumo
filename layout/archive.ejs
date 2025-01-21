@@ -17,19 +17,6 @@
       </div>
       <% }) %>
     </div>
-
-    <% if (page.total > 1) { %>
-    <nav class="pagination">
-      <% if (page.prev) { %>
-      <a class="page-prev" href="<%- url_for(page.prev_link) %>">‹ 上一页</a>
-      <% } %>
-      <span class="page-number">
-        <%= page.current %> / <%= Math.ceil(page.total / config.per_page) %>
-      </span>
-      <% if (page.next) { %>
-      <a class="page-next" href="<%- url_for(page.next_link) %>">下一页 ›</a>
-      <% } %>
-    </nav>
-    <% } %>
+    <%- partial('_partial/pagination') %>
   </div>
 </div>
