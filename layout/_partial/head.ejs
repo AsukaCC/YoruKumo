@@ -1,11 +1,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <%- favicon_tag(theme.favicon) %><%- css('css/style') %><% var activeTitle =
-  page.title || __('activeTitle'); var inactiveTitle = page.title ? (page.title
-  + ' - ' + __('inactiveTitle')) : __('inactiveTitle'); %>
-  <title><%= activeTitle %></title>
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://static.zeoseven.com/zsft/292/main/result.css" />
+  <!-- favicon -->
+  <%- favicon_tag(theme.favicon) %><%- css('css/style') %>
 
+  <!-- activeTitle -->
+  <% var activeTitle = page.title || __('activeTitle'); %>
+  <!-- inactiveTitle -->
+  <% var inactiveTitle = page.title ? (page.title + ' - ' + __('inactiveTitle'))
+  : __('inactiveTitle'); %>
+
+  <title><%= activeTitle %></title>
   <!-- 注入配置到全局变量 -->
   <script>
     window.SITE_CONFIG = {
