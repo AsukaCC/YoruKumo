@@ -37,9 +37,6 @@ page.prev = page.current > 1; page.next = page.current < page.total; %>
   </div>
   <div class="page-body">
     <div class="post-list">
-      <p>文章总数：<%= postTotal %></p>
-      <p>当前页数： <%= page.current %></p>
-
       <!-- 定义 lastYear 变量 -->
       <% var lastYear; %> <% postsToShow.each(function(post){ %>
       <!-- 遍历文章 -->
