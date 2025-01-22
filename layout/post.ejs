@@ -1,45 +1,51 @@
-<!-- 头部 -->
-<%- partial('_partial/header',{}, {cache: true}) %>
+<%- partial('_partial/header') %>
 
-<!-- 页面内容 -->
-<div class="page-content">
-  <div class="page-title">
-    <h2><%- __('menu.Post') %></h2>
-  </div>
-  <div class="page-body">
-    <div class="post-list">
-      <% var postsTotal = site.posts.length; %>
-      <!-- 文章总数 -->
-
-      <% var postsPerPage = theme.per_page; %>
-      <!-- 每页文章数 -->
-
-      <% var currentPage = page.current; %>
-      <!-- 当前页数 -->
-
-      <% site.posts.each(function(post){ %>
-      <!-- 遍历文章 -->
-      <% var year = date(post.date, 'YYYY'); %>
-
-      <!-- 每篇文章显示年份标题 -->
-      <div class="postItem-year">
-        <h3><%= year %></h3>
-      </div>
-
-      <!-- 文章链接 -->
-      <a href="<%- url_for(post.path) %>">
-        <div class="postItem">
-          <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
-            <%= post.title || '(无标题)' %>
-          </p>
-          <p><%= date(post.date, 'YYYY-MM-DD') %></p>
-          <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
+<main class="post-container">
+  <article class="post-article">
+    <header class="post-header">
+      <h1 class="post-title"><%= page.title %></h1>
+      <div class="post-meta">
+        <div class="meta-item">
+          <p class="post-time"><%=date(page.date, 'YYYY-MM-DD HH:mm:ss') %></p>
         </div>
-      </a>
-      <% }); %>
-    </div>
-  </div>
-</div>
+        <% if (page.categories && page.categories.length) { %>
+        <p class="meta-item">
+          <%- list_categories(page.categories, { show_count: false, class:
+          'post-category', style: 'none' }) %>
+        </p>
+        <% } %> <% if (page.tags && page.tags.length) { %>
+        <p class="meta-item">
+          <%- list_tags(page.tags, { show_count: false, class: 'post-tag',
+          style: 'none' }) %>
+        </p>
+        <% } %>
+      </div>
+    </header>
 
-<!-- 分页 -->
-<%- partial('_partial/pagination') %>
+    <div class="post-content"><%- page.content %></div>
+
+    <footer class="post-footer">
+      <div class="post-nav">
+        <% if (page.prev) { %>
+        <div class="post-nav-prev">
+          <i class="fa fa-chevron-left"></i>
+          <a href="<%- url_for(page.prev.path) %>" rel="prev">
+            <%= page.prev.title %>
+          </a>
+        </div>
+        <% } else { %>
+        <div class="post-nav-prev"></div>
+        <% } %> <% if (page.next) { %>
+        <div class="post-nav-next">
+          <a href="<%- url_for(page.next.path) %>" rel="next">
+            <%= page.next.title %>
+          </a>
+          <i class="fa fa-chevron-right"></i>
+        </div>
+        <% } %>
+      </div>
+    </footer>
+  </article>
+</main>
+
+<%- partial('_partial/pagination', { page: page }) %>

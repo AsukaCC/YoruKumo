@@ -1,52 +1,23 @@
 <nav class="pagination">
-  <% console.log(page); %> <% if (page.total > 1) { %>
-  <!-- 如果总页数大于1，显示分页 -->
+  <% if (page.total > 1) { %>
+
   <!-- 上一页 -->
   <a
     class="pagination-item prev <%= !page.prev ? 'disabled' : '' %>"
-    href="<%- page.prev ? url_for(page.prev_link) : 'javascript:void(0)' %>">
-    <i class="fas fa-angle-left"></i>
+    href="<%- page.prev ? url_for(page.base + page.prev_link) : 'javascript:void(0)' %>">
+    <span class="arrow left"></span>
   </a>
 
-  <div class="pagination-numbers">
-    <% var pageStart = Math.max(1, page.current - 2); %>
-    <!-- 计算起始页 -->
-    <% var pageEnd = Math.min(page.total, pageStart + 4); %>
-    <!-- 计算结束页 -->
-
-    <% if (pageEnd - pageStart < 4) { %> <% pageStart = Math.max(1, pageEnd -
-    4); %>
-    <!-- 调整起始页 -->
-    <% } %> <% if (pageStart > 1) { %>
-    <a class="pagination-item" href="<%- url_for(page.base) %>">1</a>
-    <% if (pageStart > 2) { %>
-    <span class="pagination-ellipsis">•••</span>
-    <% } %> <% } %> <% for (var i = pageStart; i <= pageEnd; i++) { %> <% if (i
-    === page.current) { %>
-    <span class="pagination-item current"><%= i %></span>
-    <% } else { %>
-    <a
-      class="pagination-item"
-      href="<%- i === 1 ? url_for(page.base) : url_for(page.base + 'page/' + i + '/') %>">
-      <%= i %>
-    </a>
-    <% } %> <% } %> <% if (pageEnd < page.total) { %> <% if (pageEnd <
-    page.total - 1) { %>
-    <span class="pagination-ellipsis">•••</span>
-    <% } %>
-    <a
-      class="pagination-item"
-      href="<%- url_for(page.base + 'page/' + page.total + '/') %>">
-      <%= page.total %>
-    </a>
-    <% } %>
-  </div>
+  <!-- 当前页码显示 -->
+  <span class="pagination-current"
+    ><%= page.current %> / <%= page.total %></span
+  >
 
   <!-- 下一页 -->
   <a
     class="pagination-item next <%= !page.next ? 'disabled' : '' %>"
-    href="<%- page.next ? url_for(page.next_link) : 'javascript:void(0)' %>">
-    <i class="fas fa-angle-right"></i>
+    href="<%- page.next ?  url_for(page.base + page.next_link) : 'javascript:void(0)' %>">
+    <span class="arrow right"></span>
   </a>
   <% } else { %>
   <div class="pagination-placeholder"></div>

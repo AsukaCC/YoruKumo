@@ -7,7 +7,7 @@ title: blog
 # 菜单 | menu
 menu:
   Home: /
-  Post: /post/
+  Archive: /archive/
   About: /about/
 
 # 轮播图 | swiper
@@ -19,13 +19,3 @@ swiper:
 footer:
   copyright: 版权所有 © 2025 Plutavian
   powered: 由 Hexo 驱动
-
-# 首页 | index
-index_generator:
-  path: ''
-  per_page: 5
-  order_by: -date
-
-# Pagination
-per_page: 4
-pagination_dir: page

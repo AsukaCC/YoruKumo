@@ -3,18 +3,15 @@
   justify-content: center
   align-items: center
   gap: 1rem
-  padding: 2rem 0
-  margin-top: 2rem
-  min-height: 2.5rem
 
 .pagination-placeholder
   height: 2.5rem
   width: 100%
 
-.pagination-numbers
-  display: flex
-  align-items: center
-  gap: 0.5rem
+.pagination-current
+  font-size: 1rem
+  color: var(--text-color)
+  font-weight: bold
 
 .pagination-item
   display: flex
@@ -46,31 +43,38 @@
     cursor: not-allowed
     pointer-events: none
 
-.pagination-ellipsis
-  color: var(--text-color-secondary)
-  padding: 0 0.2rem
-  user-select: none
-
 .prev, .next
-  background: var(--secondary-color)
+  position: relative
   min-width: 2.5rem
   padding: 0
+  border-radius: 0.5rem
+  color: var(--text-color)
+  transition: background 0.2s ease
+  display: flex
+  align-items: center
+  justify-content: center
 
-  i
-    font-size: 1rem
+  &:hover:not(.disabled)
+    background: var(--primary-color)
+    color: var(--secondary-text-color)
+
+.arrow
+  width: 0
+  height: 0
+  border-left: 5px solid transparent
+  border-right: 5px solid transparent
+  border-bottom: 7px solid var(--text-color) // 向下的箭头颜色
+
+&.left
+  transform: rotate(135deg) // 左箭头
+  margin-right: 0.5rem
+
+&.right
+  transform: rotate(-45deg) // 右箭头
+  margin-left: 0.5rem
+
+
 
 @media (max-width: 768px)
   .pagination
     flex-wrap: wrap
-
-  .pagination-numbers
-    order: 0
-    flex: 1
-    justify-content: center
-    flex-wrap: wrap
-
-  .prev
-    order: -1
-
-  .next
-    order: 1
