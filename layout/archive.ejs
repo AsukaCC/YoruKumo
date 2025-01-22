@@ -16,8 +16,8 @@ page.total = Math.ceil(postTotal / perPage);
 <!--  确保当前页数是有效的，如果 page.current 未定义，则默认为 1 -->
 if (!page.current) { page.current = parseInt(page.current) || 1; }
 
-<!-- 确保 base 路径是有效的，如果 page.base 未定义，则默认为 '/archives/' -->
-if (!page.base) { page.base = '/archives/'; }
+<!-- 确保 base 路径是有效的，如果 page.base 未定义，则默认为 '/archive/' -->
+if (!page.base) { page.base = '/archive/'; }
 
 <!--  生成上一页和下一页的链接 -->
 page.prev_link = page.current > 1 ? (page.current === 2 ? '' : 'page/' +
@@ -33,7 +33,7 @@ page.prev = page.current > 1; page.next = page.current < page.total; %>
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="page-title">
-    <h2><%- __('menu.Archives') %></h2>
+    <h2><%- __('menu.Archive') %></h2>
   </div>
   <div class="page-body">
     <div class="post-list">

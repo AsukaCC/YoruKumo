@@ -2,18 +2,26 @@
 language: zh-CN
 favicon: /images/favicon.ico
 logo:
-title: blog
+title: YoruKumo
 
 # 菜单 | menu
 menu:
   Home: /
-  Archives: /archives/
-  About: /about/
+  Archive: /archive
+  Tag: /tag
+  About: /about
 
 # 轮播图 | swiper
 swiper:
   image: /images/swiper.jpg
   title: 轮播图
+
+# 页面布局
+layout:
+  tag: tag-detail
+  archive: archive
+  category: category
+  about: about
 
 # 页脚 | footer
 footer:

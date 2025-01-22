@@ -1,0 +1,11 @@
+<div class="tag-widget">
+  <div class="widget-title"><%- __('menu.Tag') %></div>
+  <div class="widget-content">
+    <% site.tags.sort('name').each(function(tag){ %>
+    <div class="tag-widget-item">
+      <a href="#tag-<%- tag.name %>"># <%- tag.name %></a>
+      <span class="tag-widget-count"><%- tag.length %></span>
+    </div>
+    <% }) %>
+  </div>
+</div>

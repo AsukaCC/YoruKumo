@@ -1,0 +1,79 @@
+<!-- 头部 -->
+<%- partial('_partial/header',{}, {cache: true}) %>
+
+<!-- 标签页面 -->
+<% if (is_tag()) { %>
+<!-- 标签详情 -->
+<div class="page-content">
+  <div class="page-title">
+    <h2># <%- page.tag %></h2>
+    <span class="tag-count"><%- page.posts.length %> 篇文章</span>
+  </div>
+
+  <div class="page-content-body tag-detail">
+    <div class="tag-posts-list">
+      <% page.posts.sort('date', -1).each(function(post){ %>
+      <div class="tag-post-item">
+        <div class="post-info">
+          <h3 class="post-title">
+            <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+          </h3>
+          <div class="post-meta">
+            <span class="post-date"><%- date(post.date, 'YYYY-MM-DD') %></span>
+            <% if(post.categories && post.categories.length){ %>
+            <span class="post-category">
+              <i class="fas fa-folder"></i>
+              <%- list_categories(post.categories, { show_count: false, class:
+              'post-category', style: 'none', separator: ' ' }) %>
+            </span>
+            <% } %>
+          </div>
+          <% if(post.excerpt){ %>
+          <div class="post-excerpt"><%- post.excerpt %></div>
+          <% } %>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<% } else { %>
+<!-- 标签列表 -->
+<div class="page-content">
+  <div class="page-title">
+    <h2><%- __('menu.Tag') %></h2>
+  </div>
+
+  <div class="page-content-body tag-page">
+    <!-- 标签小组件 -->
+    <div class="tag-sidebar"><%- partial('_widget/tag-widget') %></div>
+
+    <!-- 标签列表 -->
+    <div class="tag-list">
+      <% site.tags.sort('name').each(function(tag){ %>
+      <div class="tag-item" id="tag-<%- tag.name %>">
+        <div class="tag-name">
+          <a href="<%- url_for(tag.path) %>"># <%- tag.name %></a>
+          <span class="tag-count"><%- tag.length %></span>
+        </div>
+        <div class="tag-posts">
+          <% tag.posts.sort('date', -1).limit(3).each(function(post){ %>
+          <div class="tag-post-item">
+            <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+            <span class="post-date"><%- date(post.date, 'YYYY-MM-DD') %></span>
+          </div>
+          <% }) %>
+        </div>
+        <div class="tag-view-all">
+          <a href="<%- url_for(tag.path) %>" class="view-all-link">
+            <span>查看全部</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<% } %>

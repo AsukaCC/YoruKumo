@@ -1,0 +1,57 @@
+.tag-widget
+  width: 200px
+  background-color: var(--main-color)
+  border-radius: 1rem
+  padding: 1.5rem
+  box-shadow: 0 0 0.5rem var(--shadow-color1)
+  max-height: calc(100vh - 120px)  // 减去顶部间距
+  overflow-y: auto
+  transition: all 0.3s ease
+
+  &:hover
+    box-shadow: 0 0.5rem 1rem var(--shadow-color1)
+
+  .widget-title
+    font-size: 1.2rem
+    font-weight: bold
+    color: var(--text-color)
+    margin-bottom: 1rem
+    padding-bottom: 0.5rem
+    border-bottom: 1px solid var(--secondary-text-color)
+
+  .widget-content
+    .tag-widget-item
+      display: flex
+      align-items: center
+      margin-bottom: 0.8rem
+
+      a
+        color: var(--text-color)
+        font-size: 0.9rem
+        transition: all 0.3s ease
+
+        &:hover
+          color: var(--secondary-text-color)
+          transform: translateX(5px)
+
+      .tag-widget-count
+        margin-left: 0.5rem
+        font-size: 0.8rem
+        color: var(--secondary-text-color)
+        background-color: var(--secondary-color)
+        padding: 0.2rem 0.5rem
+        border-radius: 0.5rem
+
+// 自定义滚动条样式
+.tag-widget::-webkit-scrollbar
+  width: 4px
+
+.tag-widget::-webkit-scrollbar-track
+  background: transparent
+
+.tag-widget::-webkit-scrollbar-thumb
+  background: var(--secondary-text-color)
+  border-radius: 2px
+
+  &:hover
+    background: var(--text-color)
