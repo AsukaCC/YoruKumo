@@ -5,7 +5,9 @@
   <a
     class="pagination-item prev <%= !page.prev ? 'disabled' : '' %>"
     href="<%- page.prev ? url_for(page.base + page.prev_link) : 'javascript:void(0)' %>">
-    <span class="arrow left"></span>
+    <svg class="icon pagination-icon" aria-hidden="true">
+      <use xlink:href="#icon-arrowleft"></use>
+    </svg>
   </a>
 
   <!-- 当前页码显示 -->
@@ -17,7 +19,9 @@
   <a
     class="pagination-item next <%= !page.next ? 'disabled' : '' %>"
     href="<%- page.next ?  url_for(page.base + page.next_link) : 'javascript:void(0)' %>">
-    <span class="arrow right"></span>
+    <svg class="icon pagination-icon" aria-hidden="true">
+      <use xlink:href="#icon-arrowright"></use>
+    </svg>
   </a>
   <% } else { %>
   <div class="pagination-placeholder"></div>

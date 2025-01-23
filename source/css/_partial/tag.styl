@@ -11,7 +11,7 @@
       top 80px
       height fit-content
       flex none
-      width 200px
+      width 15rem
 
     .tag-list
       flex 1
@@ -40,15 +40,16 @@
         margin-bottom 1rem
         border-bottom 1px solid var(--secondary-text-color)
         padding-bottom 0.5rem
+        display flex
+        align-items center
+        gap 0.5rem
+        font-size 1.2rem
+        font-weight bold
 
-        a
-          font-size 1.2rem
-          font-weight bold
-          color var(--text-color)
+        .tag-icon
           margin-right 0.5rem
-
-          &:hover
-            color var(--secondary-text-color)
+          width 1.2rem
+          height 1.2rem
 
         .tag-count
           color var(--secondary-text-color)
@@ -63,17 +64,6 @@
           justify-content space-between
           align-items center
           padding 0.5rem 0
-
-          a
-            color var(--text-color)
-            flex 1
-            margin-right 1rem
-            overflow hidden
-            text-overflow ellipsis
-            white-space nowrap
-
-            &:hover
-              color var(--secondary-text-color)
 
           .post-date
             color var(--secondary-text-color)

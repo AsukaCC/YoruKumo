@@ -30,18 +30,15 @@
   &:hover:not(.disabled)
     background: var(--primary-color)
     color: var(--secondary-text-color)
-    transform: translateY(-2px)
 
   &.current
     background: var(--primary-color)
     color: var(--secondary-text-color)
     font-weight: bold
-    transform: none
 
   &.disabled
     opacity: 0.5
     cursor: not-allowed
-    pointer-events: none
 
 .prev, .next
   position: relative
@@ -58,20 +55,9 @@
     background: var(--primary-color)
     color: var(--secondary-text-color)
 
-.arrow
-  width: 0
-  height: 0
-  border-left: 5px solid transparent
-  border-right: 5px solid transparent
-  border-bottom: 7px solid var(--text-color) // 向下的箭头颜色
-
-&.left
-  transform: rotate(135deg) // 左箭头
-  margin-right: 0.5rem
-
-&.right
-  transform: rotate(-45deg) // 右箭头
-  margin-left: 0.5rem
+.pagination-icon
+  width 1.2rem
+  height 1.2rem
 
 
 

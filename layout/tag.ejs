@@ -53,7 +53,10 @@
       <% site.tags.sort('name').each(function(tag){ %>
       <div class="tag-item" id="tag-<%- tag.name %>">
         <div class="tag-name">
-          <a href="<%- url_for(tag.path) %>"># <%- tag.name %></a>
+          <svg class="icon tag-icon" aria-hidden="true">
+            <use xlink:href="#icon-label_fill"></use>
+          </svg>
+          <%- tag.name %>
           <span class="tag-count"><%- tag.length %></span>
         </div>
         <div class="tag-posts">

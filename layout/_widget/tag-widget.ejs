@@ -3,9 +3,46 @@
   <div class="widget-content">
     <% site.tags.sort('name').each(function(tag){ %>
     <div class="tag-widget-item">
-      <a href="#tag-<%- tag.name %>"># <%- tag.name %></a>
-      <span class="tag-widget-count"><%- tag.length %></span>
+      <a href="#tag-<%- tag.name %>">
+        <svg class="icon tag-widget-icon" aria-hidden="true">
+          <use xlink:href="#icon-label_fill"></use>
+        </svg>
+        <span class="tag-widget-name"><%- tag.name %></span>
+        <span class="tag-widget-count"><%- tag.length %></span>
+      </a>
     </div>
     <% }) %>
   </div>
 </div>
+
+<div class="tag-toggle-btn">
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-localoffer"></use>
+  </svg>
+</div>
+<div class="tag-overlay"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tagWidget = document.querySelector('.tag-widget');
+    const tagToggleBtn = document.querySelector('.tag-toggle-btn');
+    const tagOverlay = document.querySelector('.tag-overlay');
+    const tagLinks = document.querySelectorAll('.tag-widget-item a');
+
+    function closeTagWidget() {
+      tagWidget.classList.remove('active');
+      tagOverlay.classList.remove('active');
+    }
+
+    tagToggleBtn.addEventListener('click', function () {
+      tagWidget.classList.toggle('active');
+      tagOverlay.classList.toggle('active');
+    });
+
+    tagOverlay.addEventListener('click', closeTagWidget);
+
+    tagLinks.forEach((link) => {
+      link.addEventListener('click', closeTagWidget);
+    });
+  });
+</script>

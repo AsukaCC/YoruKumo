@@ -88,12 +88,13 @@
   display none
   flex-direction column
   justify-content space-between
-  width 30px
-  height 21px
+  width 2rem
+  height 2rem
   background none
   border none
   cursor pointer
   padding 0
+  color var(--text-color)
 
   span
     display block
@@ -138,8 +139,13 @@
         left 25%
         width 0
 
-      &:hover::after, &.active::after
+
+      &:hover::after
+        width 0
+
+      &.active::after
         width 50%
+
 
 
 
