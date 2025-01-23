@@ -12,8 +12,7 @@
   <!-- activeTitle -->
   <% var activeTitle = page.title || __('activeTitle'); %>
   <!-- inactiveTitle -->
-  <% var inactiveTitle = page.title ? (page.title + ' - ' + __('inactiveTitle'))
-  : __('inactiveTitle'); %>
+  <% var inactiveTitle = __('inactiveTitle'); %>
 
   <title><%= activeTitle %></title>
   <!-- 注入配置到全局变量 -->

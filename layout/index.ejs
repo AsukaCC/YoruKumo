@@ -4,43 +4,41 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="page-title">
-    <h2>最近更新</h2>
+    <h2><%- __('home.title') %></h2>
   </div>
-  <div class="page-body">
-    <div class="post-list">
-      <!-- 定义 lastYear 变量 -->
-      <% var lastYear; %>
+  <main class="post-list">
+    <!-- 定义 lastYear 变量 -->
+    <% var lastYear; %>
 
-      <!-- 遍历文章 -->
-      <% page.posts.each(function(post){ %>
+    <!-- 遍历文章 -->
+    <% page.posts.each(function(post){ %>
 
-      <!-- 获取文章年份 -->
-      <% var year = date(post.date,'YYYY'); %>
+    <!-- 获取文章年份 -->
+    <% var year = date(post.date,'YYYY'); %>
 
-      <!-- 如果年份变化，则显示年份标题 -->
-      <% if (lastYear !== year) { %>
-      <div class="post-year">
-        <h3><%= year %></h3>
-      </div>
-      <% } %>
-
-      <a href="<%- url_for(post.path) %>">
-        <div class="postItem">
-          <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
-            <%= post.title || '(无标题)' %>
-          </p>
-          <p class="postItem-date"><%= date(post.date, 'YYYY-MM-DD') %></p>
-          <p class="postItem-tags">
-            <% post.tags.each(function(tag){ %>
-            <span class="postItem-tag"><%= tag.name %></span>
-            <% }) %>
-          </p>
-          <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
-        </div>
-      </a>
-
-      <!-- 更新 lastYear 变量 -->
-      <% lastYear = year; %> <% }); %>
+    <!-- 如果年份变化，则显示年份标题 -->
+    <% if (lastYear !== year) { %>
+    <div class="post-year">
+      <h3><%= year %></h3>
     </div>
-  </div>
+    <% } %>
+
+    <a href="<%- url_for(post.path) %>">
+      <div class="postItem">
+        <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
+          <%= post.title || '(无标题)' %>
+        </p>
+        <p class="postItem-date"><%= date(post.date, 'YYYY-MM-DD') %></p>
+        <p class="postItem-tags">
+          <% post.tags.each(function(tag){ %>
+          <span class="postItem-tag"><%= tag.name %></span>
+          <% }) %>
+        </p>
+        <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
+      </div>
+    </a>
+
+    <!-- 更新 lastYear 变量 -->
+    <% lastYear = year; %> <% }); %>
+  </main>
 </div>

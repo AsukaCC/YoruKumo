@@ -1,8 +1,25 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`) Fly on the Wall'
-title: Title
+
+website:
+  title: Title
+  description: Description
+  keywords: Keywords
+
+  footer:
+    reserved: Reserved
+    author: Plutavian
+    powered: Powered by Hexo
+    runningTime: Running Time
+
 menu:
   Home: Home
   Archive: Archive
   Tag: Tag
   About: About
+
+home:
+  title: Recent Updates
+
+post:
+  title: Post

@@ -1,7 +1,9 @@
-<%- partial('_partial/header') %>
+<!-- 头部 -->
+<%- partial('_partial/header',{}, {cache: true}) %>
 
-<main class="about-container">
-  <article class="about-content">
-    <h1 class="page-title"><%= __('menu.About') %></h1>
-  </article>
-</main>
+<!-- 页面内容 -->
+<div class="page-content">
+  <div class="page-title">
+    <h2><%- __('menu.About') %></h2>
+  </div>
+</div>

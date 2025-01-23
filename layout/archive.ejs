@@ -35,39 +35,37 @@ page.prev = page.current > 1; page.next = page.current < page.total; %>
   <div class="page-title">
     <h2><%- __('menu.Archive') %></h2>
   </div>
-  <div class="page-body">
-    <div class="post-list">
-      <!-- 定义 lastYear 变量 -->
-      <% var lastYear; %> <% postsToShow.each(function(post){ %>
-      <!-- 遍历文章 -->
-      <% var year = date(post.date, 'YYYY'); %>
+  <main class="post-list">
+    <!-- 定义 lastYear 变量 -->
+    <% var lastYear; %> <% postsToShow.each(function(post){ %>
+    <!-- 遍历文章 -->
+    <% var year = date(post.date, 'YYYY'); %>
 
-      <!-- 如果年份变化，则显示年份标题 -->
-      <% if (lastYear !== year) { %>
-      <div class="post-year">
-        <h3><%= year %></h3>
-      </div>
-      <% } %>
-
-      <!-- 文章链接 -->
-      <a href="<%- url_for(post.path) %>">
-        <div class="postItem">
-          <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
-            <%= post.title || '(无标题)' %>
-          </p>
-          <p>
-            <%= date(post.date, 'YYYY-MM-DD') %> <%
-            post.tags.each(function(tag){ %>
-            <span class="postItem-tag"><%= tag.name %></span>
-            <% }) %>
-          </p>
-          <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
-        </div>
-      </a>
-      <!-- 更新 lastYear 变量 -->
-      <% lastYear = year; %> <% }); %>
+    <!-- 如果年份变化，则显示年份标题 -->
+    <% if (lastYear !== year) { %>
+    <div class="post-year">
+      <h3><%= year %></h3>
     </div>
-  </div>
+    <% } %>
+
+    <!-- 文章链接 -->
+    <a href="<%- url_for(post.path) %>">
+      <div class="postItem">
+        <p class="postItem-title" title="<%= post.title || __('post.title') %>">
+          <%= post.title || __('post.title') %>
+        </p>
+        <p>
+          <%= date(post.date, 'YYYY-MM-DD') %> <% post.tags.each(function(tag){
+          %>
+          <span class="postItem-tag"><%= tag.name %></span>
+          <% }) %>
+        </p>
+        <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
+      </div>
+    </a>
+    <!-- 更新 lastYear 变量 -->
+    <% lastYear = year; %> <% }); %>
+  </main>
 </div>
 
 <!-- 分页 -->

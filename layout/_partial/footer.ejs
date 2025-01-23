@@ -1,6 +1,39 @@
 <footer class="footer-container">
   <div class="footer-content">
-    <p class="footer-text"><%= theme.footer.copyright %></p>
-    <p class="footer-text"><%= theme.footer.powered %></p>
+    <p class="footer-text">
+      <%= __('website.footer.reserved') %> @
+      <a href="<%= theme.footer.authorLink %>" target="_blank"
+        ><%= __('website.footer.author') %></a
+      >
+    </p>
+    <p class="footer-text">
+      <%= __('website.footer.powered') %>
+      <span id="runtime"></span>
+    </p>
   </div>
 </footer>
+
+<script>
+  function calculateRuntime() {
+    // 网站开始运行的时间，格式：年-月-日
+    const startTime = new Date('<%= theme.footer.since %>');
+    const currentTime = new Date();
+
+    const timeDiff = currentTime - startTime;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    document.getElementById(
+      'runtime'
+    ).innerHTML = `${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+  }
+
+  // 初始运行
+  calculateRuntime();
+  // 每秒更新一次
+  setInterval(calculateRuntime, 1000);
+</script>

@@ -1,5 +1,4 @@
 # 网站 | website
-language: zh-CN
 favicon: /images/favicon.ico
 logo:
 title: YoruKumo
@@ -25,5 +24,6 @@ layout:
 
 # 页脚 | footer
 footer:
-  copyright: 版权所有 © 2025 Plutavian
-  powered: 由 Hexo 驱动
+  count:
+  since: 2025-01-01
+  authorLink: https://asukacc.github.io

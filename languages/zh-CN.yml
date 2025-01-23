@@ -1,10 +1,27 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`)暗中观察'
 
-title: 标题
+website:
+  title: 标题
+  description: 描述
+  keywords: 关键词
+  author:
+    name: 江城
+    title: 作者
+    description: 全栈开发工程师
+
+  footer:
+    reserved: 版权所有
+    powered: 由 Hexo 驱动
+    runningTime: 运行时间
 
 menu:
   Home: 首页
   Archive: 归档
   Tag: 标签
   About: 关于
+home:
+  title: 最近更新
+
+post:
+  title: 文章
