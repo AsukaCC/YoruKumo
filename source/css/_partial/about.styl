@@ -32,3 +32,68 @@
 
       &:hover
         text-decoration underline
+
+.about-main
+  max-width 800px
+  margin 0 auto
+  padding 2rem
+  text-align center
+
+  .about-avatar
+    margin-bottom 3rem
+
+    img
+      width 180px
+      height 180px
+      border-radius 50%
+      object-fit cover
+      box-shadow 0 0 20px rgba(0, 0, 0, 0.1)
+      transition transform 0.3s ease
+
+      &:hover
+        transform scale(1.05)
+
+  .about-description
+    margin-bottom 3rem
+
+    p
+      font-size 1.1rem
+      line-height 1.8
+      color var(--text-color)
+      max-width 600px
+      margin 0 auto
+
+  .about-social
+    display flex
+    justify-content center
+    gap 2rem
+
+    .social-item
+      display flex
+      align-items center
+      justify-content center
+      width 45px
+      height 45px
+      border-radius 50%
+      background var(--background-color)
+      transition all 0.3s ease
+      box-shadow 0 2px 10px rgba(0, 0, 0, 0.1)
+
+      &:hover
+        transform translateY(-3px)
+        box-shadow 0 5px 15px rgba(0, 0, 0, 0.2)
+
+      .icon
+        width 24px
+        height 24px
+        color var(--text-color)
+
+// 暗色模式适配
+@media (prefers-color-scheme: dark)
+  .about-main
+    .about-social
+      .social-item
+        background var(--background-color-dark)
+
+        &:hover
+          background var(--background-hover-dark)

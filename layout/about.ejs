@@ -6,4 +6,67 @@
   <div class="page-title">
     <h2><%- __('menu.About') %></h2>
   </div>
+  <main class="about-main">
+    <!-- 头像部分 -->
+    <div class="about-avatar">
+      <img src="<%= url_for(theme.about.avatar) %>" alt="avatar" />
+    </div>
+
+    <p><%= theme.about.name %></p>
+
+    <!-- 个人描述 -->
+    <div class="about-description">
+      <p><%= theme.about.description %></p>
+    </div>
+
+    <!-- 社交链接 -->
+    <div class="about-social">
+      <% if (theme.about.email) { %>
+      <a
+        href="mailto:<%= theme.about.email %>"
+        target="_blank"
+        class="social-item"
+        title="Email">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-youxiang"></use>
+        </svg>
+      </a>
+      <% } %> <% if (theme.about.github) { %>
+      <a
+        href="<%= theme.about.github %>"
+        target="_blank"
+        class="social-item"
+        title="GitHub">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-github"></use>
+        </svg>
+      </a>
+      <% } %> <% if (theme.about.linkedin) { %>
+      <a
+        href="<%= theme.about.linkedin %>"
+        target="_blank"
+        class="social-item"
+        title="LinkedIn">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-linkedin"></use>
+        </svg>
+      </a>
+      <% } %> <% if (theme.about.wechat) { %>
+      <a class="social-item" title="WeChat: <%= theme.about.wechat %>">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-weixin"></use>
+        </svg>
+      </a>
+      <% } %> <% if (theme.about.qq) { %>
+      <a
+        href="tencent://message/?uin=<%= theme.about.qq %>"
+        class="social-item"
+        title="QQ: <%= theme.about.qq %>">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-QQ"></use>
+        </svg>
+      </a>
+      <% } %>
+    </div>
+  </main>
 </div>

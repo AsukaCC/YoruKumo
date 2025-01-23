@@ -27,3 +27,14 @@ footer:
   count:
   since: 2025-01-01
   authorLink: https://asukacc.github.io
+
+# 关于页面配置
+about:
+  name: 'Plutavian'
+  description: '摸鱼爱好者'
+  avatar: /images/avatar.jpg
+  email: 'plutavian@gmail.com'
+  wechat: 'asukacc'
+  qq: '1234567890'
+  github: 'https://github.com/asukacc'
+  linkedin:
