@@ -1,184 +1,169 @@
 // 标签首页样式
 .tag-index-page
-  .page-content
-    width 100%
-    max-width 800px
-    margin 0 auto
-    padding 2rem 0
+  .tag-page
+    display flex
+    justify-content flex-start
+    gap 2rem
+    position relative
 
-    .page-title
-      text-align center
-      margin-bottom 2rem
+    .tag-sidebar
+      position sticky
+      top 80px
+      height fit-content
+      flex none
+      width 200px
 
-    .tag-page
+    .tag-list
+      flex 1
+      min-width 0
+
+    .tag-item
+      background-color var(--main-color)
+      border-radius 1rem
+      padding 1.5rem
+      margin-bottom 1.5rem
+      box-shadow 0 0 0.5rem var(--shadow-color1)
+      transition all 0.3s ease
+      scroll-margin-top 100px
+      height 280px
       display flex
-      justify-content flex-start
-      gap 2rem
-      position relative
+      flex-direction column
 
-      .tag-sidebar
-        position sticky
-        top 80px
-        height fit-content
-        flex none
-        width 200px
+      &:hover
+        transform translateY(-2px)
+        box-shadow 0 0.5rem 1rem var(--shadow-color1)
 
-      .tag-list
+      &:target
+        animation highlight 1s ease-out
+
+      .tag-name
+        margin-bottom 1rem
+        border-bottom 1px solid var(--secondary-text-color)
+        padding-bottom 0.5rem
+
+        a
+          font-size 1.2rem
+          font-weight bold
+          color var(--text-color)
+          margin-right 0.5rem
+
+          &:hover
+            color var(--secondary-text-color)
+
+        .tag-count
+          color var(--secondary-text-color)
+          font-size 0.9rem
+
+      .tag-posts
         flex 1
-        min-width 0 // 防止flex子项溢出
+        overflow hidden
 
-      .tag-item
+        .tag-post-item
+          display flex
+          justify-content space-between
+          align-items center
+          padding 0.5rem 0
+
+          a
+            color var(--text-color)
+            flex 1
+            margin-right 1rem
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+
+            &:hover
+              color var(--secondary-text-color)
+
+          .post-date
+            color var(--secondary-text-color)
+            font-size 0.9rem
+
+      .tag-view-all
+        margin-top auto
+        padding-top 1rem
+        border-top 1px solid var(--secondary-text-color)
+        text-align right
+
+        .view-all-link
+          display inline-flex
+          align-items center
+          color var(--secondary-text-color)
+          font-size 0.9rem
+          transition all 0.3s ease
+
+          &:hover
+            color var(--text-color)
+            transform translateX(5px)
+
+          i
+            margin-left 0.5rem
+            font-size 0.8rem
+
+// 标签详情页样式
+.tag-detail-page
+  width 100%
+  max-width 800px
+  margin 0 auto
+  padding 2rem 0
+
+  .tag-detail
+    width 100%
+
+    .tag-posts-list
+      .tag-post-item
         background-color var(--main-color)
         border-radius 1rem
         padding 1.5rem
         margin-bottom 1.5rem
         box-shadow 0 0 0.5rem var(--shadow-color1)
         transition all 0.3s ease
-        scroll-margin-top 100px
-        height 280px
-        display flex
-        flex-direction column
 
         &:hover
           transform translateY(-2px)
           box-shadow 0 0.5rem 1rem var(--shadow-color1)
 
-        &:target
-          animation highlight 1s ease-out
-
-        .tag-name
-          margin-bottom 1rem
-          border-bottom 1px solid var(--secondary-text-color)
-          padding-bottom 0.5rem
-
-          a
-            font-size 1.2rem
-            font-weight bold
-            color var(--text-color)
-            margin-right 0.5rem
-
-            &:hover
-              color var(--secondary-text-color)
-
-          .tag-count
-            color var(--secondary-text-color)
-            font-size 0.9rem
-
-        .tag-posts
-          flex 1
-          overflow hidden
-
-          .tag-post-item
-            display flex
-            justify-content space-between
-            align-items center
-            padding 0.5rem 0
+        .post-info
+          .post-title
+            margin-bottom 1rem
 
             a
+              font-size 1.4rem
+              font-weight bold
               color var(--text-color)
-              flex 1
-              margin-right 1rem
-              overflow hidden
-              text-overflow ellipsis
-              white-space nowrap
+              transition all 0.3s ease
 
               &:hover
                 color var(--secondary-text-color)
 
-            .post-date
-              color var(--secondary-text-color)
-              font-size 0.9rem
-
-        .tag-view-all
-          margin-top auto
-          padding-top 1rem
-          border-top 1px solid var(--secondary-text-color)
-          text-align right
-
-          .view-all-link
-            display inline-flex
+          .post-meta
+            display flex
             align-items center
+            gap 1rem
+            margin-bottom 1rem
             color var(--secondary-text-color)
             font-size 0.9rem
-            transition all 0.3s ease
 
-            &:hover
-              color var(--text-color)
-              transform translateX(5px)
+            .post-category
+              display flex
+              align-items center
+              gap 0.5rem
 
-            i
-              margin-left 0.5rem
-              font-size 0.8rem
-
-// 标签详情页样式
-.tag-detail-page
-  .page-content
-    width 100%
-    max-width 800px
-    margin 0 auto
-    padding 2rem 0
-
-    .page-title
-      text-align center
-      margin-bottom 2rem
-
-    .tag-detail
-      width 100%
-
-      .tag-posts-list
-        .tag-post-item
-          background-color var(--main-color)
-          border-radius 1rem
-          padding 1.5rem
-          margin-bottom 1.5rem
-          box-shadow 0 0 0.5rem var(--shadow-color1)
-          transition all 0.3s ease
-
-          &:hover
-            transform translateY(-2px)
-            box-shadow 0 0.5rem 1rem var(--shadow-color1)
-
-          .post-info
-            .post-title
-              margin-bottom 1rem
+              i
+                font-size 0.8rem
 
               a
-                font-size 1.4rem
-                font-weight bold
-                color var(--text-color)
+                color var(--secondary-text-color)
                 transition all 0.3s ease
 
                 &:hover
-                  color var(--secondary-text-color)
+                  color var(--text-color)
 
-            .post-meta
-              display flex
-              align-items center
-              gap 1rem
-              margin-bottom 1rem
-              color var(--secondary-text-color)
-              font-size 0.9rem
-
-              .post-category
-                display flex
-                align-items center
-                gap 0.5rem
-
-                i
-                  font-size 0.8rem
-
-                a
-                  color var(--secondary-text-color)
-                  transition all 0.3s ease
-
-                  &:hover
-                    color var(--text-color)
-
-            .post-excerpt
-              color var(--text-color)
-              font-size 0.95rem
-              line-height 1.6
-              opacity 0.9
+          .post-excerpt
+            color var(--text-color)
+            font-size 0.95rem
+            line-height 1.6
+            opacity 0.9
 
 // 高亮动画
 @keyframes highlight
@@ -190,21 +175,19 @@
 // 响应式布局
 @media (max-width: 768px)
   .tag-index-page
-    .page-content
-      padding 0 1rem
+    padding 0 1rem
 
-      .tag-page
-        flex-direction column
+    .tag-page
+      flex-direction column
 
-        .tag-sidebar
-          position relative
-          top 0
-          width 100%
-          margin-bottom 2rem
+      .tag-sidebar
+        position relative
+        top 0
+        width 100%
+        margin-bottom 2rem
 
-        .tag-list
-          width 100%
+      .tag-list
+        width 100%
 
   .tag-detail-page
-    .page-content
-      padding 0 1rem
+    padding 0 1rem
