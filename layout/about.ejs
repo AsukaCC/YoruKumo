@@ -19,54 +19,53 @@
       <p><%= theme.about.description %></p>
     </div>
 
-    <!-- 社交链接 -->
-    <div class="about-social">
-      <% if (theme.about.email) { %>
-      <a
-        href="mailto:<%= theme.about.email %>"
-        target="_blank"
-        class="social-item"
-        title="Email">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-youxiang"></use>
-        </svg>
-      </a>
-      <% } %> <% if (theme.about.github) { %>
-      <a
-        href="<%= theme.about.github %>"
-        target="_blank"
-        class="social-item"
-        title="GitHub">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-github"></use>
-        </svg>
-      </a>
-      <% } %> <% if (theme.about.linkedin) { %>
-      <a
-        href="<%= theme.about.linkedin %>"
-        target="_blank"
-        class="social-item"
-        title="LinkedIn">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-linkedin"></use>
-        </svg>
-      </a>
-      <% } %> <% if (theme.about.wechat) { %>
-      <a class="social-item" title="WeChat: <%= theme.about.wechat %>">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-weixin"></use>
-        </svg>
-      </a>
-      <% } %> <% if (theme.about.qq) { %>
-      <a
-        href="tencent://message/?uin=<%= theme.about.qq %>"
-        class="social-item"
-        title="QQ: <%= theme.about.qq %>">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-QQ"></use>
-        </svg>
-      </a>
-      <% } %>
+    <!-- 联系方式 -->
+    <div class="about-links">
+      <h3>联系方式</h3>
+      <div class="links-section">
+        <% if (theme.about.email) { %>
+        <div class="link-item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-youxiang"></use>
+          </svg>
+          <span><%= theme.about.email %></span>
+        </div>
+        <% } %> <% if (theme.about.wechat) { %>
+        <div class="link-item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-icon"></use>
+          </svg>
+          <span><%= theme.about.wechat %></span>
+        </div>
+        <% } %> <% if (theme.about.qq) { %>
+        <div class="link-item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-QQ"></use>
+          </svg>
+          <span><%= theme.about.qq %></span>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- 社交平台 -->
+      <h3>社交平台</h3>
+      <div class="links-section">
+        <% if (theme.about.github) { %>
+        <div class="link-item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+          <a href="<%= theme.about.github %>" target="_blank">GitHub</a>
+        </div>
+        <% } %> <% if (theme.about.linkedin) { %>
+        <div class="link-item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-linkedin"></use>
+          </svg>
+          <a href="<%= theme.about.linkedin %>" target="_blank">LinkedIn</a>
+        </div>
+        <% } %>
+      </div>
     </div>
   </main>
 </div>

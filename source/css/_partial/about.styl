@@ -97,3 +97,55 @@
 
         &:hover
           background var(--background-hover-dark)
+
+.about-links
+  margin-top: 2rem
+  text-align: left
+
+  h3
+    margin: 1.5rem 0 1rem
+    font-size: 1.2rem
+    color: var(--text-color)
+    position: relative
+    padding-left: 1rem
+
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      top: 50%
+      transform: translateY(-50%)
+      width: 4px
+      height: 1em
+      background: var(--primary-color)
+      border-radius: 2px
+
+  .links-section
+    margin-bottom: 2rem
+    padding-left: 1rem
+
+  .link-item
+    display: flex
+    align-items: center
+    margin-bottom: 1rem
+    transition: all 0.3s ease
+
+    &:hover
+      transform: translateX(5px)
+
+    .icon
+      width: 1.5rem
+      height: 1.5rem
+      margin-right: 1rem
+      color: var(--text-color)
+
+    span, a
+      font-size: 1rem
+      color: var(--text-color)
+      opacity: 0.8
+
+    a
+      text-decoration: none
+      &:hover
+        color: var(--primary-color)
+        opacity: 1
