@@ -5,8 +5,6 @@ categories:
   - 主题介绍
 tags:
   - YoruKumo
-  - Hexo
-  - 主题介绍
 ---
 
 ## 关于 YoruKumo
