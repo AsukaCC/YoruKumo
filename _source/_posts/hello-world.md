@@ -11,15 +11,15 @@ tags:
 
 ## 关于 YoruKumo
 
-YoruKumo 是一个简约优雅的 Hexo 主题，专注于内容展示，提供了良好的阅读体验。主题名称 "YoruKumo"（夜云）展现了简约与优雅的设计理念。
+YoruKumo 是一个简约优雅的 Hexo 主题，专注于内容展示，提供了良好的阅读体验。主题名称 "YoruKumo" 展现了简约与优雅的设计理念。
 
 ## 主要特性
 
 - 🌓 自适应深色模式
 - 📱 响应式设计
-- 🔍 文章搜索功能
-- 💬 评论系统支持
-- 📊 文章阅读统计
+- 🔍 文章搜索功能 (TODO)
+- 💬 评论系统支持 (TODO)
+- 📊 文章阅读统计 (TODO)
 - 🎨 代码高亮
 - 📝 Markdown 增强
 
@@ -72,13 +72,6 @@ about:
   linkedin: https://linkedin.com/in/username
   wechat: your-wechat-id
   qq: your-qq-number
-
-# 主题功能配置
-features:
-  darkMode: true # 深色模式开关
-  search: true # 搜索功能
-  toc: true # 文章目录
-  codeHighlight: true # 代码高亮
 ```
 
 ## 文章配置
@@ -105,15 +98,7 @@ toc: true # 是否显示目录
 
 ### 自定义样式
 
-你可以通过修改 `source/css/_custom/custom.styl` 来添加自定义样式：
-
-```stylus
-// 示例：自定义链接颜色
-a
-  color: #0366d6
-  &:hover
-    color: #0246a2
-```
+你可以通过修改 `source/css/_variables.styl` 来添加自定义样式：
 
 ### 自定义页面
 
@@ -123,20 +108,9 @@ YoruKumo 主题支持自定义页面，你可以通过以下命令创建：
 hexo new page custom-page
 ```
 
-## 常见问题
-
-1. **图片无法显示**
-
-   - 确保图片路径正确
-   - 检查 \_config.yml 中的 post_asset_folder 设置
-
-2. **评论系统配置**
-   - 支持 Gitalk、Valine 等评论系统
-   - 在主题配置文件中填写相应配置信息
-
 ## 更新日志
 
-### v1.0.0 (2024-01-01)
+### v1.0.0 (2025-02-12)
 
 - 🎉 首次发布
 - ✨ 基础功能实现
@@ -145,11 +119,5 @@ hexo new page custom-page
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request 来帮助改进主题。
-
-## 许可证
-
-YoruKumo 主题遵循 MIT 许可证。
-
----
 
 希望你能享受使用 YoruKumo 主题的体验！如有任何问题，欢迎在 GitHub 上提出。
