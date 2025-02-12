@@ -10,10 +10,10 @@
             <p class="post-time"><%=date(page.date, 'YYYY-MM-DD HH:mm') %></p>
           </div>
           <% if (page.categories && page.categories.length) { %>
-          <p class="meta-item">
+          <!-- <p class="meta-item">
             <%- list_categories(page.categories, { show_count: false, class:
             'post-category', style: 'none' }) %>
-          </p>
+          </p> -->
           <% } %> <% if (page.tags && page.tags.length) { %>
           <p class="meta-item">
             <%- list_tags(page.tags, { show_count: false, class: 'post-tag',

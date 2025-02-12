@@ -6,7 +6,12 @@
 <!-- 标签详情 -->
 <div class="tag-detail-page page-content">
   <div class="page-title">
-    <h2># <%- page.tag %></h2>
+    <h2>
+      <svg class="icon tag-icon" aria-hidden="true">
+        <use xlink:href="#icon-label_fill"></use>
+      </svg>
+      <%- page.tag %>
+    </h2>
     <span class="tag-count"><%- page.posts.length %> 篇文章</span>
   </div>
 
