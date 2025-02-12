@@ -54,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentPath = window.location.pathname;
   const menuLinks = document.querySelectorAll('.nav-list a');
 
-  // ... existing code ...
-
   menuLinks.forEach((link) => {
     const href = link.getAttribute('href');
     // 获取当前路径的基础部分（移除分页部分）
@@ -71,8 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
       link.classList.add('active');
     }
   });
-
-  // ... existing code ...
 
   // 处理移动端菜单切换
   const menuToggleMobile = document.querySelector('.menu-toggle-mobile');
