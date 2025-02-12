@@ -7,9 +7,7 @@
         <h1 class="post-title"><%= page.title %></h1>
         <div class="post-meta">
           <div class="meta-item">
-            <p class="post-time">
-              <%=date(page.date, 'YYYY-MM-DD HH:mm:ss') %>
-            </p>
+            <p class="post-time"><%=date(page.date, 'YYYY-MM-DD HH:mm') %></p>
           </div>
           <% if (page.categories && page.categories.length) { %>
           <p class="meta-item">
