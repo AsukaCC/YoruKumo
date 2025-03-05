@@ -1,0 +1,26 @@
+<div class="to-top">
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-arrowup"></use>
+  </svg>
+</div>
+
+<script>
+  // 滑动超过一个屏幕才显示
+  window.addEventListener('scroll', function () {
+    const toTop = document.querySelector('.to-top');
+    if (window.scrollY > window.innerHeight) {
+      toTop.style.display = 'block';
+    } else {
+      toTop.style.display = 'none';
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const toTop = document.querySelector('.to-top');
+    toTop.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  });
+</script>
