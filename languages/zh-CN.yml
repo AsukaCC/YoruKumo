@@ -17,9 +17,11 @@ website:
 
 menu:
   Home: 首页
-  Archive: 归档
-  Tag: 标签
+  Posts: 文章
+  Stats: 统计
   About: 关于
+  Category: 分类
+  Archive: 归档
 home:
   title: 最近更新
 

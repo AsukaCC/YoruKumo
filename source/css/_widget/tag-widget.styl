@@ -41,10 +41,24 @@
         gap 0.5rem
         font-size 1rem
         width: 100%
+        color var(--text-color)
+        transition all 0.25s ease
+
+        &:hover
+          color var(--secondary-text-color)
+          transform translateX(5px)
+
+          .tag-widget-count
+            background-color var(--text-color)
+            color var(--secondary-color)
 
         .tag-widget-icon
           width 1.2rem
           height 1.2rem
+          transition transform 0.25s ease
+
+        &:hover .tag-widget-icon
+          transform scale(1.15) rotate(5deg)
 
         .tag-widget-count
           margin-left: auto
@@ -53,6 +67,7 @@
           background-color: var(--secondary-color)
           padding: 0.2rem 0.5rem
           border-radius: 0.5rem
+          transition all 0.25s ease
 
 // 自定义滚动条样式
 .tag-widget::-webkit-scrollbar

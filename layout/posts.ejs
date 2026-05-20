@@ -8,15 +8,15 @@
       <svg class="icon tag-icon" aria-hidden="true">
         <use xlink:href="#icon-label_fill"></use>
       </svg>
-      <%- __('home.title') %>
+      <%- __('menu.Posts') %>
     </h2>
   </div>
   <main class="post-list timeline-wrapper">
     <!-- 定义 lastYear 变量 -->
     <% var lastYear; %>
 
-    <!-- 遍历文章 -->
-    <% page.posts.each(function(post){ %>
+    <!-- 遍历全部文章，按日期倒序 -->
+    <% site.posts.sort('-date').each(function(post){ %>
 
     <!-- 获取文章年份 -->
     <% var year = date(post.date,'YYYY'); %>
@@ -61,6 +61,7 @@
     </div>
 
     <!-- 更新 lastYear 变量 -->
-    <% lastYear = year; %> <% }); %>
+    <% lastYear = year; %> 
+    <% }); %>
   </main>
 </div>

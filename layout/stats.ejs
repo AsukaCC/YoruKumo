@@ -1,0 +1,79 @@
+<!-- 头部 -->
+<%- partial('_partial/header',{}, {cache: true}) %>
+
+<!-- D3.js & D3-Sankey plugin CDNs -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12"></script>
+
+<!-- Serialize Hexo Posts data for the client side D3 visualization -->
+<script id="posts-data" type="application/json">
+  <%- JSON.stringify(site.posts.sort('date', -1).map(function(post) {
+    return {
+      title: post.title,
+      path: url_for(post.path),
+      date: date(post.date, 'YYYY-MM-DD'),
+      year: date(post.date, 'YYYY'),
+      categories: post.categories && post.categories.length ? post.categories.map(function(cat) { return cat.name; }) : [],
+      tags: post.tags && post.tags.length ? post.tags.map(function(tag) { return tag.name; }) : []
+    };
+  })) %>
+</script>
+
+<!-- Serialize taxonomies URLs for navigation -->
+<script id="taxonomies-data" type="application/json">
+  {
+    "categories": <%- JSON.stringify(site.categories.reduce(function(acc, cat) {
+      acc[cat.name] = url_for(cat.path);
+      return acc;
+    }, {})) %>,
+    "tags": <%- JSON.stringify(site.tags.reduce(function(acc, tag) {
+      acc[tag.name] = url_for(tag.path);
+      return acc;
+    }, {})) %>,
+    "yearBase": "<%- url_for('/archives/') %>"
+  }
+</script>
+
+<div class="tag-index-page page-content">
+  <div class="page-title">
+    <h2><%- __('menu.Stats') %></h2>
+  </div>
+
+  <div class="sankey-archive-container">
+    <!-- 控制栏 -->
+    <div class="sankey-controls">
+      <div class="sankey-tabs">
+        <button class="sankey-tab active" data-view="all">全部</button>
+        <button class="sankey-tab" data-view="year-category">年份 ➔ 分类</button>
+        <button class="sankey-tab" data-view="category-tag">分类 ➔ 标签</button>
+      </div>
+      <div class="sankey-info" id="sankey-info-panel" style="display: none;">
+        <span class="filter-status-label">提示：</span>
+        <span class="active-filter-value">点击年份、分类或标签可直接跳转至对应归档页面查询</span>
+      </div>
+    </div>
+
+    <!-- 桑基图卡片 (仅在年份-分类或分类-标签下显示) -->
+    <div class="sankey-chart-card" id="sankey-chart-card" style="display: none;">
+      <div id="sankey-chart">
+        <div class="sankey-loader">
+          <i class="fas fa-spinner fa-spin"></i> 图表加载中...
+        </div>
+      </div>
+    </div>
+
+    <!-- 全部文章列表 (仅在“全部”标签下显示) -->
+    <div class="sankey-articles-section" id="sankey-articles-section">
+      <h3 class="articles-section-title">
+        <span class="title-text">文章列表</span>
+        <span class="articles-count-badge" id="sankey-articles-count">0 篇</span>
+      </h3>
+      <div class="sankey-articles-list" id="sankey-articles-list">
+        <!-- 由 JavaScript 动态渲染 -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 引入桑基图控制脚本 -->
+<%- js('js/tag-sankey.js') %>

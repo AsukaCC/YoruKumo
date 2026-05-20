@@ -6,13 +6,26 @@
     --shadow-color #FFFFFF33
     --shadow-color1 #0000001a
     --shadow-color2 #0000000d
+    --header-bg rgba(255, 255, 255, 0.75)
 
+// 暗色模式变量混合器 (Mixin)
+set-dark-theme()
+  --main-color #18181b
+  --secondary-color #09090b
+  --text-color #ededed
+  --secondary-text-color #a0a0a0
+  --shadow-color #00000033
+  --shadow-color1 #ffffff1a
+  --shadow-color2 #ffffff0d
+  --header-bg rgba(9, 9, 11, 0.75)
+
+// 优先通过 data-theme 属性切换，方便后续手动控制
+html[data-theme='dark']
+  set-dark-theme()
+
+// 优雅降级：系统主题为 dark 且 JS 没有强制指定为 light 时启用暗色
 @media (prefers-color-scheme: dark)
-    :root
-        --main-color  #18181b
-        --secondary-color #09090b
-        --text-color #ededed
-        --secondary-text-color: #a0a0a0
-        --shadow-color #00000033
-        --shadow-color1 #ffffff1a
-        --shadow-color2 #ffffff0d
+  :root:not([data-theme='light'])
+    set-dark-theme()
+
+

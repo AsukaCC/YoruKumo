@@ -10,17 +10,36 @@
   justify-content space-between
   align-items center
   color: var(--text-color)
-  transition: background-color 1s ease
+  // 全面过渡效果，使滑动隐藏/显示、背景切换和毛玻璃效果极其平稳
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s ease,
+              backdrop-filter 0.4s ease,
+              border-bottom 0.4s ease,
+              box-shadow 0.4s ease
 
 .header-top
   transform: translateY(0)
   background: transparent
+  border-bottom: 1px solid transparent
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0)
+  backdrop-filter: blur(0px) saturate(100%)
+
+  // 悬浮时，即便在最顶部，也触发温和的毛玻璃背景，提升导航文本可读性与动态感
+  &:hover
+    background: var(--header-bg)
+    backdrop-filter: blur(12px) saturate(180%)
+    border-bottom: 1px solid var(--shadow-color2)
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03)
 
 .header-normal,
 .header-mobile
   transform: translateY(0)
-  background:var(--shadow-color)
-  backdrop-filter: blur(2px)
+  background: var(--header-bg)
+  backdrop-filter: blur(12px) saturate(180%)
+  border-bottom: 1px solid var(--shadow-color2)
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03)
+
+
 
 
 

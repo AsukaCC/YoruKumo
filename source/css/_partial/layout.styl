@@ -50,10 +50,16 @@
   text-overflow ellipsis
   color: var(--text-color)
   border-radius 1rem
-  transition: transform 0.1s ease
+  box-shadow 0 2px 8px var(--shadow-color)
 
-  &:hover
-    transform: scale(1.01)
+  html.no-gsap &
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease
+    &:hover
+      transform: scale(1.015)
+      box-shadow 0 10px 25px var(--shadow-color)
+      background-color var(--main-color)
+      & .postItem-tag
+        background-color var(--secondary-color)
 
   & > p
     display -webkit-box
@@ -88,14 +94,11 @@
     border-radius 0.5rem
     background-color var(--main-color)
     color var(--text-color)
+    transition background-color 0.3s ease
 
   .postItem-excerpt
     font-size 0.8rem
 
-  &:hover
-      background-color var(--main-color)
-      & .postItem-tag
-        background-color var(--secondary-color)
 
 
 

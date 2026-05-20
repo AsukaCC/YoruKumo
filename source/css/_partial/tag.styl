@@ -23,15 +23,16 @@
       padding 1.5rem
       margin-bottom 1.5rem
       box-shadow 0 0 0.5rem var(--shadow-color1)
-      transition all 0.3s ease
       scroll-margin-top 100px
-      height 280px
+      min-height 280px
       display flex
       flex-direction column
 
-      &:hover
-        transform translateY(-2px)
-        box-shadow 0 0.5rem 1rem var(--shadow-color1)
+      html.no-gsap &
+        transition all 0.3s ease
+        &:hover
+          transform translateY(-2px)
+          box-shadow 0 0.5rem 1rem var(--shadow-color1)
 
       &:target
         animation highlight 1s ease-out
@@ -65,6 +66,17 @@
           align-items center
           padding 0.5rem 0
 
+          a
+            color var(--text-color)
+            transition all 0.25s ease
+            position relative
+            display inline-flex
+            align-items center
+
+            &:hover
+              color var(--secondary-text-color)
+              padding-left 6px
+
           .post-date
             color var(--secondary-text-color)
             font-size 0.9rem
@@ -97,6 +109,26 @@
   margin 0 auto
   padding 2rem 0
 
+  .page-title
+    display flex
+    align-items center
+    gap 1rem
+    margin-bottom 1.5rem
+
+    h2
+      margin 0
+      display flex
+      align-items center
+      gap 0.5rem
+
+    .tag-count
+      font-size 0.9rem
+      color var(--secondary-text-color)
+      background-color var(--main-color)
+      padding 0.3rem 0.8rem
+      border-radius 2rem
+      box-shadow 0 2px 8px var(--shadow-color)
+
   .tag-detail
     width 100%
 
@@ -107,11 +139,12 @@
         padding 1.5rem
         margin-bottom 1.5rem
         box-shadow 0 0 0.5rem var(--shadow-color1)
-        transition all 0.3s ease
 
-        &:hover
-          transform translateY(-2px)
-          box-shadow 0 0.5rem 1rem var(--shadow-color1)
+        html.no-gsap &
+          transition all 0.3s ease
+          &:hover
+            transform translateY(-2px)
+            box-shadow 0 0.5rem 1rem var(--shadow-color1)
 
         .post-info
           .post-title

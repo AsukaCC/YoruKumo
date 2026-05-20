@@ -1,0 +1,151 @@
+// Code block container
+figure.highlight
+  position relative
+  background #1e1e28
+  border-radius 12px
+  margin 1.5rem 0
+  box-shadow 0 8px 24px rgba(0, 0, 0, 0.15)
+  overflow hidden
+  font-family Consolas, Monaco, Fira Code, monospace
+  font-size 0.85rem
+  line-height 1.6
+
+  table
+    width 100%
+    border-collapse collapse
+    margin 0
+    padding 0
+    border none
+
+  td
+    padding 0
+    border none
+
+  pre
+    margin 0
+    padding 0
+    background none
+    border none
+    font-family inherit
+
+  // Toolbar styling
+  .code-toolbar
+    display flex
+    justify-content space-between
+    align-items center
+    background #161622
+    padding 0.6rem 1rem
+    border-bottom 1px solid rgba(255, 255, 255, 0.05)
+    user-select none
+
+    .code-dots
+      display flex
+      gap 6px
+
+      .code-dot
+        width 10px
+        height 10px
+        border-radius 50%
+        display inline-block
+
+        &.red
+          background #ff5f56
+        &.yellow
+          background #ffbd2e
+        &.green
+          background #27c93f
+
+    .code-meta
+      display flex
+      align-items center
+      gap 12px
+
+      .code-lang
+        color #6c7086
+        font-size 0.75rem
+        font-weight 600
+        text-transform uppercase
+        letter-spacing 0.5px
+
+      .code-copy-btn
+        background rgba(255, 255, 255, 0.05)
+        border 1px solid rgba(255, 255, 255, 0.1)
+        color #a6adc8
+        padding 2px 8px
+        border-radius 4px
+        font-size 0.7rem
+        cursor pointer
+        transition all 0.2s ease
+        font-family inherit
+
+        &:hover
+          background rgba(255, 255, 255, 0.1)
+          color #cdd6f4
+          border-color rgba(255, 255, 255, 0.2)
+
+        &.copied
+          background rgba(39, 201, 63, 0.15)
+          border-color rgba(39, 201, 63, 0.3)
+          color #a6e3a1
+
+  // Gutter & line numbers
+  td.gutter
+    background #181825
+    color #585b70
+    text-align right
+    padding 0.8rem 0.8rem
+    user-select none
+    border-right 1px solid rgba(255, 255, 255, 0.05)
+    width 35px
+
+    .line
+      display block
+
+  // Code body
+  td.code
+    padding 0.8rem 1rem
+    background #1e1e28
+    overflow-x auto
+
+    // Custom Scrollbar
+    &::-webkit-scrollbar
+      height 8px
+    &::-webkit-scrollbar-track
+      background #1e1e28
+    &::-webkit-scrollbar-thumb
+      background #313244
+      border-radius 4px
+      &:hover
+        background #45475a
+
+    pre
+      overflow visible
+
+  // Syntax highlighting (Catppuccin Mocha theme style)
+  .comment, .quote
+    color #6c7086
+    font-style italic
+
+  .keyword, .selector-tag, .addition
+    color #cba6f7
+
+  .string, .meta .string, .doctag
+    color #a6e3a1
+
+  .number, .literal
+    color #fab387
+
+  .title, .title.function_, .section
+    color #89b4fa
+
+  .params, .attr
+    color #94e2d5
+
+  .built_in, .type
+    color #f9e2af
+
+  .bullet, .symbol, .attribute
+    color #f5c2e7
+
+  .operator
+    color #89dceb

@@ -1,31 +1,5 @@
-<!-- 文章总数 -->
-<% var postTotal = site.posts.length; %>
-
-<!-- 每页文章数 -->
-<% var perPage = config.per_page; %>
-
-<!-- 获取当前页要显示的文章 -->
-<% var postsToShow = site.posts.sort('-date').slice((page.current - 1) *
-perPage, page.current * perPage); %>
-
-<!-- 分页变量 -->
-<%
-<!-- 计算总页数，如果 page.total 未定义，则进行计算 -->
-page.total = Math.ceil(postTotal / perPage);
-
-<!--  确保当前页数是有效的，如果 page.current 未定义，则默认为 1 -->
-if (!page.current) { page.current = parseInt(page.current) || 1; }
-
-<!-- 确保 base 路径是有效的，如果 page.base 未定义，则默认为 '/archive/' -->
-if (!page.base) { page.base = '/archive/'; }
-
-<!--  生成上一页和下一页的链接 -->
-page.prev_link = page.current > 1 ? (page.current === 2 ? '' : 'page/' +
-(page.current - 1) + '/') : ''; page.next_link = page.current < page.total ?
-'page/' + (page.current + 1) + '/' : '';
-
-<!-- // 确定是否有上一页和下一页 -->
-page.prev = page.current > 1; page.next = page.current < page.total; %>
+<!-- 获取要显示的文章 (直接取 Hexo 生成好的 page.posts 并按时间排序) -->
+<% var postsToShow = page.posts ? page.posts.sort('-date') : site.posts.sort('-date'); %>
 
 <!-- 头部 -->
 <%- partial('_partial/header',{}, {cache: true}) %>
@@ -33,40 +7,102 @@ page.prev = page.current > 1; page.next = page.current < page.total; %>
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="page-title">
-    <h2><%- __('menu.Archive') %></h2>
+    <h2>
+      <% if (is_category()) { %>
+        <%= __('menu.Category') %>: <%- page.category %>
+      <% } else if (is_tag()) { %>
+        <%= __('menu.Tag') %>: <%- page.tag %>
+      <% } else if (is_archive()) { %>
+        <% if (page.year) { %>
+          <%- page.year %> <%= __('menu.Archive') %>
+        <% } else { %>
+          <%= __('menu.Archive') %>
+        <% } %>
+      <% } else { %>
+        <%= __('menu.Archive') %>
+      <% } %>
+    </h2>
   </div>
-  <main class="post-list">
-    <!-- 定义 lastYear 变量 -->
-    <% var lastYear; %> <% postsToShow.each(function(post){ %>
-    <!-- 遍历文章 -->
-    <% var year = date(post.date, 'YYYY'); %>
 
-    <!-- 如果年份变化，则显示年份标题 -->
-    <% if (lastYear !== year) { %>
-    <div class="post-year">
-      <h3><%= year %></h3>
-    </div>
-    <% } %>
-
-    <!-- 文章链接 -->
-    <a href="<%- url_for(post.path) %>">
-      <div class="postItem">
-        <p class="postItem-title" title="<%= post.title || __('post.title') %>">
-          <%= post.title || __('post.title') %>
-        </p>
-        <p>
-          <%= date(post.date, 'YYYY-MM-DD') %> <% post.tags.each(function(tag){
+  <div class="sankey-archive-container" style="margin-top: 1.5rem;">
+    <div class="sankey-articles-section" style="margin-top: 0;">
+      <h3 class="articles-section-title">
+        <span class="title-text">文章列表</span>
+        <span class="articles-count-badge"><%= postsToShow.length %> 篇</span>
+      </h3>
+      
+      <div class="sankey-articles-list">
+        <% postsToShow.each(function(post){ %>
+          <%
+            // 渲染分类与标签徽章
+            var taxHtml = '';
+            if (post.categories && post.categories.length > 0) {
+              post.categories.forEach(function(cat) {
+                taxHtml += '<span class="article-badge category-badge">' + cat.name + '</span>';
+              });
+            }
+            if (post.tags && post.tags.length > 0) {
+              post.tags.slice(0, 3).forEach(function(tag) {
+                taxHtml += '<span class="article-badge tag-badge">#' + tag.name + '</span>';
+              });
+            }
           %>
-          <span class="postItem-tag"><%= tag.name %></span>
-          <% }) %>
-        </p>
-        <p class="postItem-excerpt"><%= post.excerpt || '' %></p>
+          <a href="<%- url_for(post.path) %>" class="sankey-article-card">
+            <div class="article-card-header">
+              <h4 class="article-card-title"><%= post.title %></h4>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-date">
+                <i class="far fa-calendar-alt"></i> <%= date(post.date, 'YYYY-MM-DD') %>
+              </span>
+              <div class="article-taxonomies"><%- taxHtml %></div>
+            </div>
+          </a>
+        <% }); %>
       </div>
-    </a>
-    <!-- 更新 lastYear 变量 -->
-    <% lastYear = year; %> <% }); %>
-  </main>
+    </div>
+  </div>
 </div>
 
-<!-- 分页 -->
-<%- partial('_partial/pagination',{page: page}) %>
+<!-- 卡片 GSAP 入场动画及 Hover 微交互 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap !== 'undefined') {
+      const animItems = document.querySelectorAll('.sankey-articles-list .sankey-article-card');
+      gsap.fromTo(animItems,
+        { opacity: 0, y: 15 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.45, 
+          stagger: 0.04, 
+          ease: 'power2.out',
+          overwrite: 'auto'
+        }
+      );
+      
+      animItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          gsap.to(item, {
+            y: -4,
+            scale: 1.015,
+            borderColor: 'var(--secondary-text-color)',
+            boxShadow: '0 8px 20px var(--shadow-color1)',
+            duration: 0.25,
+            ease: 'power2.out'
+          });
+        });
+        item.addEventListener('mouseleave', () => {
+          gsap.to(item, {
+            y: 0,
+            scale: 1,
+            borderColor: 'var(--shadow-color1)',
+            boxShadow: '0 2px 8px var(--shadow-color2)',
+            duration: 0.25,
+            ease: 'power2.out'
+          });
+        });
+      });
+    }
+  });
+</script>

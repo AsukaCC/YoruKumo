@@ -6,8 +6,8 @@ title: YoruKumo
 # 菜单 | menu
 menu:
   Home: /
-  Archive: /archive
-  Tag: /tag
+  Posts: /posts
+  Stats: /stats
   About: /about
 
 # 轮播图 | swiper
@@ -17,7 +17,7 @@ swiper:
 
 # 页面布局
 layout:
-  tag: tag-detail
+  stats: stats
   archive: archive
   category: category
   about: about
@@ -38,3 +38,12 @@ about:
   qq: 'qq'
   github: 'https://github.com/asukacc'
   linkedin: 'https://www.linkedin.com'
+
+# GSAP 动画配置 | GSAP Animations Configuration
+gsap:
+  enable: true                 # 是否启用 GSAP 动画
+  entrance_stagger: 0.08        # 列表项进场动画交错时间 (秒)
+  scroll_trigger: true         # 是否启用滚动触发渐现动画
+  parallax: true               # 是否启用顶部 Banner 视差滚动效果
+  hover_effect: true           # 是否启用卡片悬浮 GSAP 交互效果
+

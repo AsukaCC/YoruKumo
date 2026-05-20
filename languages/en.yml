@@ -14,9 +14,11 @@ website:
 
 menu:
   Home: Home
-  Archive: Archive
-  Tag: Tag
+  Posts: Posts
+  Stats: Stats
   About: About
+  Category: Category
+  Archive: Archive
 
 home:
   title: Recent Updates
