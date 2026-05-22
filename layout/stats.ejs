@@ -34,6 +34,28 @@
   }
 </script>
 
+<script>
+  window.sankeyI18n = {
+    all: "<%= __('stats.all') %>",
+    yearCategory: "<%= __('stats.yearToCategory') %>",
+    categoryTag: "<%= __('stats.categoryToTag') %>",
+    tip: "<%= __('stats.tip') %>",
+    loading: "<%= __('stats.loading') %>",
+    articlesList: "<%= __('post.list') %>",
+    articlesCount: "<%= __('post.count', '%s') %>",
+    noArticles: "<%= __('stats.noArticles') %>",
+    noChartData: "<%= __('stats.noChartData') %>",
+    layoutError: "<%= __('stats.layoutError') %>",
+    flowPath: "<%= __('stats.flowPath') %>",
+    relatedArticles: "<%= __('stats.relatedArticles') %>",
+    archiveYear: "<%= __('stats.archiveYear') %>",
+    articleCategory: "<%= __('stats.articleCategory') %>",
+    tagCategory: "<%= __('stats.tagCategory') %>",
+    containsArticles: "<%= __('stats.containsArticles') %>",
+    clickHint: "<%= __('stats.clickHint') %>"
+  };
+</script>
+
 <div class="tag-index-page page-content">
   <div class="page-title">
     <h2><%- __('menu.Stats') %></h2>
@@ -43,13 +65,13 @@
     <!-- 控制栏 -->
     <div class="sankey-controls">
       <div class="sankey-tabs">
-        <button class="sankey-tab active" data-view="all">全部</button>
-        <button class="sankey-tab" data-view="year-category">年份 ➔ 分类</button>
-        <button class="sankey-tab" data-view="category-tag">分类 ➔ 标签</button>
+        <button class="sankey-tab active" data-view="all"><%= __('stats.all') %></button>
+        <button class="sankey-tab" data-view="year-category"><%= __('stats.yearToCategory') %></button>
+        <button class="sankey-tab" data-view="category-tag"><%= __('stats.categoryToTag') %></button>
       </div>
       <div class="sankey-info" id="sankey-info-panel" style="display: none;">
-        <span class="filter-status-label">提示：</span>
-        <span class="active-filter-value">点击年份、分类或标签可直接跳转至对应归档页面查询</span>
+        <i class="fas fa-info-circle" style="color: var(--secondary-text-color); font-size: 0.95rem;"></i>
+        <span class="active-filter-value"><%= __('stats.tip') %></span>
       </div>
     </div>
 
@@ -57,7 +79,7 @@
     <div class="sankey-chart-card" id="sankey-chart-card" style="display: none;">
       <div id="sankey-chart">
         <div class="sankey-loader">
-          <i class="fas fa-spinner fa-spin"></i> 图表加载中...
+          <i class="fas fa-spinner fa-spin"></i> <%= __('stats.loading') %>
         </div>
       </div>
     </div>
@@ -65,8 +87,8 @@
     <!-- 全部文章列表 (仅在“全部”标签下显示) -->
     <div class="sankey-articles-section" id="sankey-articles-section">
       <h3 class="articles-section-title">
-        <span class="title-text">文章列表</span>
-        <span class="articles-count-badge" id="sankey-articles-count">0 篇</span>
+        <span class="title-text"><%= __('post.list') %></span>
+        <span class="articles-count-badge" id="sankey-articles-count"><%= __('post.count', 0) %></span>
       </h3>
       <div class="sankey-articles-list" id="sankey-articles-list">
         <!-- 由 JavaScript 动态渲染 -->

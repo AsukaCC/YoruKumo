@@ -1,0 +1,59 @@
+activeTitle: 《-biubiu-⊂(`ω´∩)
+inactiveTitle: '|ω･`) そっと見守る'
+
+website:
+  title: タイトル
+  description: 説明
+  keywords: キーワード
+  author:
+    name: Plutavian
+    title: 著者
+    description: フルスタックエンジニア
+
+  footer:
+    reserved: All Rights Reserved
+    powered: Hexo により駆動
+    runningTime: 稼働時間
+    day: " 日 "
+    hour: " 時間 "
+    minute: " 分 "
+    second: " 秒"
+
+menu:
+  Home: ホーム
+  Posts: 記事
+  Stats: 統計
+  About: プロフィール
+  Category: カテゴリー
+  Archive: アーカイブ
+  Tag: タグ
+
+home:
+  title: 最新記事
+
+post:
+  title: 記事
+  list: 記事一覧
+  count: '%s 件'
+  untitled: '(無題)'
+
+about:
+  contact: 連絡先
+  social: ソーシャルメディア
+
+stats:
+  all: すべて
+  yearToCategory: 年 ➔ カテゴリー
+  categoryToTag: カテゴリー ➔ タグ
+  tip: 'ヒント：年、カテゴリー、またはタグをクリックすると、対応するアーカイブページにジャンプします'
+  loading: チャート読み込み中...
+  noArticles: 記事データがありません
+  noChartData: チャートデータがありません
+  layoutError: レイアウト計算エラー
+  flowPath: 関連するフローパス
+  relatedArticles: 件の関連記事
+  archiveYear: アーカイブ年
+  articleCategory: カテゴリー
+  tagCategory: タグ
+  containsArticles: '含まれる記事：'
+  clickHint: クリックして対応するアーカイブを表示

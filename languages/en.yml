@@ -5,12 +5,20 @@ website:
   title: Title
   description: Description
   keywords: Keywords
+  author:
+    name: Plutavian
+    title: Author
+    description: Full Stack Developer
 
   footer:
     reserved: Reserved
     author: Plutavian
     powered: Powered by Hexo
     runningTime: Running Time
+    day: " days "
+    hour: " hours "
+    minute: " minutes "
+    second: " seconds"
 
 menu:
   Home: Home
@@ -19,9 +27,34 @@ menu:
   About: About
   Category: Category
   Archive: Archive
+  Tag: Tag
 
 home:
   title: Recent Updates
 
 post:
   title: Post
+  list: Articles
+  count: '%s posts'
+  untitled: '(Untitled)'
+
+about:
+  contact: Contact
+  social: Social Platforms
+
+stats:
+  all: All
+  yearToCategory: Year ➔ Category
+  categoryToTag: Category ➔ Tag
+  tip: 'Tip: Click on a year, category, or tag to view its archive page'
+  loading: Loading chart...
+  noArticles: No article data available
+  noChartData: No chart data available
+  layoutError: Failed to calculate chart layout
+  flowPath: Flow Path
+  relatedArticles: related articles
+  archiveYear: Archive Year
+  articleCategory: Article Category
+  tagCategory: Tag Category
+  containsArticles: 'Contains articles: '
+  clickHint: Click to view the corresponding archive

@@ -45,8 +45,8 @@
       <div class="timeline-content">
         <a href="<%- url_for(post.path) %>">
           <div class="postItem">
-            <p class="postItem-title" title="<%= post.title || '(无标题)' %>">
-              <%= post.title || '(无标题)' %>
+            <p class="postItem-title" title="<%= post.title || __('post.untitled') %>">
+              <%= post.title || __('post.untitled') %>
             </p>
             <p class="postItem-date"><%= date(post.date, 'YYYY-MM-DD') %></p>
             <p class="postItem-tags">

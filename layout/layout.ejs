@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <%- partial('_partial/head') %>
-  <body>
+  <body class="<%- is_home() ? 'is-home' : '' %>">
     <%- partial('_widget/swiper') %>
     <div class="body-page-view"><%- body %></div>
     <%- partial('_partial/footer') %>

@@ -18,6 +18,7 @@
   <!-- 注入配置到全局变量 -->
   <script>
     window.SITE_CONFIG = {
+      root: '<%= config.root %>',
       activeTitle: '<%= activeTitle %>',
       inactiveTitle: '<%= inactiveTitle %>',
       gsap: <%- JSON.stringify(theme.gsap || { enable: true, entrance_stagger: 0.08, scroll_trigger: true, parallax: true, hover_effect: true }) %>

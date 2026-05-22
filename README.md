@@ -1,5 +1,9 @@
 # Hexo 主题 YoruKumo (夜云)
 
+<p align="center">
+  <b>简体中文</b> | <a href="./README_en.md">English</a> | <a href="./README_ja.md">日本語</a>
+</p>
+
 YoruKumo 是一款专为极简主义者与视觉体验追求者设计的现代 Hexo 博客主题。本主题深度结合 **GSAP (GreenSock Animation Platform)** 与 **ScrollTrigger**，带来了高质感的微交互与动态加载动效，同时拥有优雅的毛玻璃设计系统（Glassmorphism）和完善的系统级暗黑模式。
 
 ---
@@ -98,6 +102,23 @@ about:
 footer:
   since: 2025-01-01
   authorLink: https://github.com/asukacc
+```
+
+### 5. 多语言本地化支持 (`language`)
+
+YoruKumo 完美支持国际化本地化，能够自动翻译页面标题、系统菜单、页脚运行时间单位、以及 D3.js 桑基图的全部交互文本。
+
+在 Hexo 站点根目录下的 `_config.yml` 中修改 `language` 即可自由切换：
+
+```yaml
+# 简体中文
+language: zh-CN
+
+# 英文
+language: en
+
+# 日文
+language: ja
 ```
 
 ---

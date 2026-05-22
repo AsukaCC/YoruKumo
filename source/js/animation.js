@@ -28,21 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // ==========================================
   const header = document.getElementById('header-container');
   if (header) {
-    // 头部整体从顶部滑入并渐显
-    gsap.fromTo(header, 
-      { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
-    );
-
-    // 导航项 stagger 渐显
-    const navItems = document.querySelectorAll('.nav-list li');
-    if (navItems.length > 0) {
-      gsap.fromTo(navItems,
-        { opacity: 0, y: -15 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: config.entrance_stagger, ease: 'power2.out', delay: 0.2 }
-      );
-    }
-
     // 导航链接与 Logo 的 Hover 微交互
     if (config.hover_effect) {
       const logo = document.querySelector('.logo');

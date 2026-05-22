@@ -89,7 +89,7 @@
     padding 1.5rem
     box-shadow 0 4px 20px var(--shadow-color1)
     border 1px solid var(--shadow-color1)
-    overflow-x auto
+    overflow visible
     position relative
     min-height 400px
     display flex
@@ -99,7 +99,6 @@
     #sankey-chart
       width 100%
       height 100%
-      min-width 600px // 确保在大屏幕下不被压缩，可在窄屏下横向滚动
       position relative
 
       svg
@@ -170,40 +169,32 @@
     position absolute
     z-index 1050
     pointer-events none
-    background rgba(255, 255, 255, 0.9)
-    backdrop-filter blur(8px)
-    border 1px solid rgba(0, 0, 0, 0.08)
-    padding 0.75rem 1rem
-    border-radius 0.75rem
-    box-shadow 0 10px 25px rgba(0, 0, 0, 0.12)
+    background var(--main-color)
+    backdrop-filter blur(10px)
+    border 1px solid var(--shadow-color2)
+    padding 0.85rem 1.1rem
+    border-radius 0.85rem
+    box-shadow 0 10px 30px var(--shadow-color2)
     font-size 0.85rem
-    color #1f2937
+    color var(--text-color)
     line-height 1.5
-    transition opacity 0.2s ease
+    transition opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)
     opacity 0
-
-    html[data-theme='dark'] &
-      background rgba(24, 24, 27, 0.9)
-      border 1px solid rgba(255, 255, 255, 0.08)
-      box-shadow 0 10px 25px rgba(0, 0, 0, 0.4)
-      color #e5e7eb
 
     .tooltip-header
       font-weight bold
-      margin-bottom 0.25rem
-      border-bottom 1px solid rgba(0, 0, 0, 0.05)
-      padding-bottom 0.25rem
+      margin-bottom 0.5rem
+      border-bottom 1px solid var(--shadow-color1)
+      padding-bottom 0.4rem
       display flex
       justify-content space-between
+      align-items center
       gap 1rem
 
-      html[data-theme='dark'] &
-        border-bottom 1px solid rgba(255, 255, 255, 0.05)
-
     .tooltip-body
-      font-family monospace
       font-size 0.8rem
-      opacity 0.85
+      line-height 1.5
+      opacity 0.9
 
   // 4. 文章列表区域 (Filtered Articles)
   .sankey-articles-section

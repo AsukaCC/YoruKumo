@@ -27,9 +27,14 @@
     const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
+    const dayStr = '<%= __("website.footer.day") %>';
+    const hourStr = '<%= __("website.footer.hour") %>';
+    const minuteStr = '<%= __("website.footer.minute") %>';
+    const secondStr = '<%= __("website.footer.second") %>';
+
     document.getElementById(
       'runtime'
-    ).innerHTML = `${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+    ).innerHTML = `${days}${dayStr}${hours}${hourStr}${minutes}${minuteStr}${seconds}${secondStr}`;
   }
 
   // 初始运行

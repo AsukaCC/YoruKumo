@@ -1,5 +1,29 @@
 // tag-sankey.js - D3.js Sankey Diagram & Taxonomy Redirects
 document.addEventListener('DOMContentLoaded', function () {
+  const i18n = window.sankeyI18n || {
+    all: "全部",
+    yearCategory: "年份 ➔ 分类",
+    categoryTag: "分类 ➔ 标签",
+    tip: "提示：点击年份、分类或标签可跳转查看对应归档页面",
+    loading: "图表加载中...",
+    articlesList: "文章列表",
+    articlesCount: "%s 篇",
+    noArticles: "无文章数据",
+    noChartData: "无关联图表数据",
+    layoutError: "图表布局计算出错",
+    flowPath: "关联流向路径",
+    relatedArticles: "篇关联文章",
+    archiveYear: "归档年份",
+    articleCategory: "文章分类",
+    tagCategory: "标签类别",
+    containsArticles: "包含文章：",
+    clickHint: "点击可跳转查看对应归档"
+  };
+
+  function formatArticlesCount(count) {
+    return i18n.articlesCount.replace('%s', count);
+  }
+
   // ==========================================
   // 1. 初始化数据与页面元素
   // ==========================================
@@ -49,13 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // "全部" 视图下，显示全量文章
     if (articlesCountEl) {
-      articlesCountEl.textContent = `${posts.length} 篇`;
+      articlesCountEl.textContent = formatArticlesCount(posts.length);
     }
 
     articlesListEl.innerHTML = '';
 
     if (posts.length === 0) {
-      articlesListEl.innerHTML = '<div class="sankey-loader">无文章数据</div>';
+      articlesListEl.innerHTML = `<div class="sankey-loader">${i18n.noArticles}</div>`;
       return;
     }
 
@@ -172,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
     chartContainer.innerHTML = '';
 
     const width = chartContainer.clientWidth;
-    const height = 450;
 
     let rawLinks = [];
 
@@ -244,6 +267,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const nodes = Object.values(nodeMap);
 
+    // 计算各列节点数以动态调整高度，确保每个节点都有足够的垂直插值空间（至少28px），防止颜色块扩增后发生重叠遮挡
+    const leftCount = nodes.filter(n => n.type === (currentView === 'year-category' ? 'year' : 'category')).length;
+    const rightCount = nodes.filter(n => n.type === (currentView === 'year-category' ? 'category' : 'tag')).length;
+    const maxColumnNodes = Math.max(leftCount, rightCount);
+    const height = Math.max(450, maxColumnNodes * 28 + 30);
+
+    function getPostCategories(post) {
+      return post.categories && post.categories.length > 0 ? post.categories : ['未分类'];
+    }
+    function getPostTags(post) {
+      return post.tags && post.tags.length > 0 ? post.tags : ['无标签'];
+    }
+
+    // 计算节点的真实文章数
+    nodes.forEach(n => {
+      if (n.type === 'year') {
+        n.postCount = posts.filter(p => p.year === n.name).length;
+      } else if (n.type === 'category') {
+        n.postCount = posts.filter(p => getPostCategories(p).includes(n.name)).length;
+      } else if (n.type === 'tag') {
+        n.postCount = posts.filter(p => getPostTags(p).includes(n.name)).length;
+      }
+    });
+
+    // 计算连线的真实关联文章数
+    links.forEach(l => {
+      let count = 0;
+      posts.forEach(p => {
+        let matchSource = false;
+        let matchTarget = false;
+
+        // 匹配源节点
+        if (l.sourceType === 'year') {
+          matchSource = p.year === l.sourceName;
+        } else if (l.sourceType === 'category') {
+          matchSource = getPostCategories(p).includes(l.sourceName);
+        }
+
+        // 匹配目标节点
+        if (l.targetType === 'category') {
+          matchTarget = getPostCategories(p).includes(l.targetName);
+        } else if (l.targetType === 'tag') {
+          matchTarget = getPostTags(p).includes(l.targetName);
+        }
+
+        if (matchSource && matchTarget) {
+          count++;
+        }
+      });
+      l.postCount = count;
+    });
+
     const nodeIndex = {};
     nodes.forEach((n, idx) => {
       nodeIndex[n.id] = idx;
@@ -252,11 +327,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const d3Links = links.map(l => ({
       source: nodeIndex[l.source],
       target: nodeIndex[l.target],
-      value: l.value
+      value: l.value,
+      postCount: l.postCount
     }));
 
     if (nodes.length === 0 || d3Links.length === 0) {
-      chartContainer.innerHTML = '<div class="sankey-loader">无关联图表数据</div>';
+      chartContainer.innerHTML = `<div class="sankey-loader">${i18n.noChartData}</div>`;
       return;
     }
 
@@ -272,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const sankey = d3.sankey()
       .nodeWidth(18)
-      .nodePadding(24)
+      .nodePadding(16)
       .extent([[2, 10], [width - 2, height - 10]]);
 
     let graph;
@@ -283,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     } catch (err) {
       console.error('D3 Sankey layout error:', err);
-      chartContainer.innerHTML = '<div class="sankey-loader">图表布局计算出错</div>';
+      chartContainer.innerHTML = `<div class="sankey-loader">${i18n.layoutError}</div>`;
       return;
     }
 
@@ -315,6 +391,34 @@ document.addEventListener('DOMContentLoaded', function () {
         .attr('class', 'sankey-tooltip');
     }
 
+    function positionTooltip(event) {
+      const containerRect = chartContainer.getBoundingClientRect();
+      const tooltipNode = tooltip.node();
+      const tooltipWidth = tooltipNode ? tooltipNode.offsetWidth : 200;
+      const tooltipHeight = tooltipNode ? tooltipNode.offsetHeight : 80;
+
+      let tooltipX = event.clientX - containerRect.left + 15;
+      let tooltipY = event.clientY - containerRect.top + 15;
+
+      // Prevent right overflow
+      if (tooltipX + tooltipWidth > containerRect.width) {
+        tooltipX = event.clientX - containerRect.left - tooltipWidth - 15;
+      }
+      if (tooltipX < 0) {
+        tooltipX = 10;
+      }
+
+      // Prevent bottom overflow
+      if (tooltipY + tooltipHeight > containerRect.height) {
+        tooltipY = event.clientY - containerRect.top - tooltipHeight - 15;
+      }
+      if (tooltipY < 0) {
+        tooltipY = 10;
+      }
+
+      tooltip.style('left', `${tooltipX}px`).style('top', `${tooltipY}px`);
+    }
+
     // 绘制连线
     const link = svg.append('g')
       .attr('class', 'sankey-links')
@@ -332,20 +436,23 @@ document.addEventListener('DOMContentLoaded', function () {
         tooltip
           .style('opacity', 1)
           .html(`
-            <div class="tooltip-header">
-              <span>关联路径流向</span>
-              <strong>${d.value.toFixed(1)} 关联数</strong>
+            <div class="tooltip-header" style="margin-bottom: 0.4rem; border-bottom: 1px solid var(--shadow-color1); padding-bottom: 0.3rem;">
+              <span style="display: flex; align-items: center; gap: 0.4rem; color: var(--secondary-text-color); font-weight: normal; font-size: 0.8rem;">
+                <i class="fas fa-random"></i> ${i18n.flowPath}
+              </span>
+              <strong style="color: var(--text-color); font-size: 0.85rem;">
+                <span style="color: ${getNodeColor(d.source.name, d.source.type)};">${d.postCount}</span> ${i18n.relatedArticles}
+              </strong>
             </div>
-            <div class="tooltip-body">
-              ${d.source.name} ➔ ${d.target.name}
+            <div class="tooltip-body" style="font-weight: 500; font-size: 0.8rem;">
+              <span style="color: ${getNodeColor(d.source.name, d.source.type)}; font-weight: 600;">${d.source.name}</span>
+              <i class="fas fa-long-arrow-alt-right" style="color: var(--secondary-text-color); margin: 0 0.5rem; font-size: 0.8rem;"></i>
+              <span style="color: ${getNodeColor(d.target.name, d.target.type)}; font-weight: 600;">${d.target.name}</span>
             </div>
           `);
       })
       .on('mousemove', function (event) {
-        const containerRect = chartContainer.getBoundingClientRect();
-        const tooltipX = event.clientX - containerRect.left + 15;
-        const tooltipY = event.clientY - containerRect.top + 15;
-        tooltip.style('left', `${tooltipX}px`).style('top', `${tooltipY}px`);
+        positionTooltip(event);
       })
       .on('mouseout', function () {
         d3.select(this).style('stroke-opacity', 0.25);
@@ -386,22 +493,39 @@ document.addEventListener('DOMContentLoaded', function () {
     // 绘制节点矩形
     node.append('rect')
       .attr('x', d => d.x0)
-      .attr('y', d => d.y0)
-      .attr('height', d => Math.max(3, d.y1 - d.y0))
+      .attr('y', d => {
+        const minHeight = 12;
+        const actualHeight = d.y1 - d.y0;
+        return actualHeight < minHeight ? d.y0 - (minHeight - actualHeight) / 2 : d.y0;
+      })
+      .attr('height', d => Math.max(12, d.y1 - d.y0))
       .attr('width', d => d.x1 - d.x0)
       .attr('fill', d => getNodeColor(d.name, d.type))
       .attr('fill-opacity', 0.8)
       .on('mouseover', function (event, d) {
+        const typeLabel = d.type === 'year' ? i18n.archiveYear : d.type === 'category' ? i18n.articleCategory : i18n.tagCategory;
+        const typeIcon = d.type === 'year' ? 'far fa-calendar-alt' : d.type === 'category' ? 'far fa-folder-open' : 'fas fa-tag';
+        const accentColor = getNodeColor(d.name, d.type);
+
         tooltip
           .style('opacity', 1)
           .html(`
-            <div class="tooltip-header">
-              <span>${d.type === 'year' ? '归档年份' : d.type === 'category' ? '文章分类' : '标签类别'}</span>
-              <strong>${d.name}</strong>
+            <div class="tooltip-header" style="margin-bottom: 0.4rem; border-bottom: 1px solid var(--shadow-color1); padding-bottom: 0.3rem;">
+              <span style="display: flex; align-items: center; gap: 0.4rem; color: var(--secondary-text-color); font-weight: normal; font-size: 0.8rem;">
+                <i class="${typeIcon}" style="color: ${accentColor}; font-size: 0.85rem;"></i> ${typeLabel}
+              </span>
+              <strong style="color: var(--text-color); font-size: 0.85rem; border-left: 2px solid ${accentColor}; padding-left: 0.4rem; margin-left: 0.4rem;">
+                ${d.name}
+              </strong>
             </div>
-            <div class="tooltip-body">
-              共含 ${d.value.toFixed(0)} 篇关联文章<br/>
-              <span style="color: var(--secondary-text-color); font-size: 0.75rem;">点击跳转查看列表</span>
+            <div class="tooltip-body" style="font-size: 0.8rem; line-height: 1.6;">
+              <div style="margin-bottom: 0.2rem; color: var(--text-color);">
+                ${i18n.containsArticles}<strong style="font-size: 0.9rem; color: ${accentColor}; font-weight: bold;">${formatArticlesCount(d.postCount)}</strong>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.3rem; color: var(--secondary-text-color); font-size: 0.75rem; border-top: 1px dashed var(--shadow-color1); padding-top: 0.3rem; margin-top: 0.3rem;">
+                <i class="fas fa-mouse-pointer" style="font-size: 0.7rem;"></i>
+                <span>${i18n.clickHint}</span>
+              </div>
             </div>
           `);
 
@@ -411,10 +535,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.style('stroke-opacity', l => connected.has(l) ? 0.7 : 0.05);
       })
       .on('mousemove', function (event) {
-        const containerRect = chartContainer.getBoundingClientRect();
-        const tooltipX = event.clientX - containerRect.left + 15;
-        const tooltipY = event.clientY - containerRect.top + 15;
-        tooltip.style('left', `${tooltipX}px`).style('top', `${tooltipY}px`);
+        positionTooltip(event);
       })
       .on('mouseout', function () {
         link.style('stroke-opacity', 0.25);
@@ -427,7 +548,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (d.x0 < width / 2) return d.x1 + 8; // 左列靠右排布
         return d.x0 - 8; // 右列靠左排布
       })
-      .attr('y', d => (d.y0 + d.y1) / 2)
+      .attr('y', d => {
+        const minHeight = 12;
+        const actualHeight = d.y1 - d.y0;
+        if (actualHeight < minHeight) {
+          const drawY0 = d.y0 - (minHeight - actualHeight) / 2;
+          return drawY0 + minHeight / 2;
+        }
+        return (d.y0 + d.y1) / 2;
+      })
       .attr('dy', '0.35em')
       .attr('text-anchor', d => {
         if (d.x0 < width / 2) return 'start';

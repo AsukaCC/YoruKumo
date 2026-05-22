@@ -14,6 +14,10 @@ website:
     reserved: 版权所有
     powered: 由 Hexo 驱动
     runningTime: 运行时间
+    day: " 天 "
+    hour: " 小时 "
+    minute: " 分 "
+    second: " 秒"
 
 menu:
   Home: 首页
@@ -22,8 +26,34 @@ menu:
   About: 关于
   Category: 分类
   Archive: 归档
+  Tag: 标签
+
 home:
   title: 最近更新
 
 post:
   title: 文章
+  list: 文章列表
+  count: '%s 篇'
+  untitled: '(无标题)'
+
+about:
+  contact: 联系方式
+  social: 社交平台
+
+stats:
+  all: 全部
+  yearToCategory: 年份 ➔ 分类
+  categoryToTag: 分类 ➔ 标签
+  tip: '提示：点击年份、分类或标签可跳转查看对应归档页面'
+  loading: 图表加载中...
+  noArticles: 无文章数据
+  noChartData: 无关联图表数据
+  layoutError: 图表布局计算出错
+  flowPath: 关联流向路径
+  relatedArticles: 篇关联文章
+  archiveYear: 归档年份
+  articleCategory: 文章分类
+  tagCategory: 标签类别
+  containsArticles: '包含文章：'
+  clickHint: 点击可跳转查看对应归档
