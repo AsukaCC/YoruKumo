@@ -9,38 +9,52 @@ figure.highlight
   font-family Consolas, Monaco, Fira Code, monospace
   font-size 0.85rem
   line-height 1.6
+  max-width 100%
 
   table
-    width 100%
-    border-collapse collapse
-    margin 0
-    padding 0
-    border none
+    width 100% !important
+    table-layout fixed !important
+    border-collapse collapse !important
+    margin 0 !important
+    padding 0 !important
+    border none !important
 
   td
-    padding 0
-    border none
+    padding 0 !important
+    border none !important
 
   pre
-    margin 0
-    padding 0
-    background none
-    border none
-    font-family inherit
-    line-height inherit
+    margin 0 !important
+    padding 0 !important
+    background transparent !important
+    border none !important
+    font-family inherit !important
+    line-height inherit !important
+    white-space pre !important
+    word-break normal !important
+    overflow-wrap normal !important
+    word-wrap normal !important
 
   code
-    margin 0
-    padding 0
-    background none
-    border none
-    font-family inherit
-    line-height inherit
+    margin 0 !important
+    padding 0 !important
+    background transparent !important
+    border none !important
+    font-family inherit !important
+    line-height inherit !important
+    white-space pre !important
+    word-break normal !important
+    overflow-wrap normal !important
+    word-wrap normal !important
 
   .line
     display block
     line-height 1.6
     min-height 1.6em
+    white-space pre !important
+    word-break normal !important
+    overflow-wrap normal !important
+    word-wrap normal !important
 
   br
     display none
@@ -109,10 +123,10 @@ figure.highlight
   td.gutter
     background #181825
     color #585b70
-    text-align right
-    padding 0.8rem 0.8rem
+    text-align left !important
+    padding 0.8rem 0.8rem !important
     user-select none
-    border-right 1px solid rgba(255, 255, 255, 0.05)
+    border-right 1px solid rgba(255, 255, 255, 0.05) !important
     width 35px
 
     .line
@@ -120,7 +134,7 @@ figure.highlight
 
   // Code body
   td.code
-    padding 0.8rem 1rem
+    padding 0.8rem 1rem !important
     background #1e1e28
     overflow-x auto
 

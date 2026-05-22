@@ -1,8 +1,15 @@
 .post-page
+  width 100%
+  display flex
+  flex-direction column
+  align-items center
+
   .post-container
     padding: 2rem 0
     flex: 1
     height 100%
+    width 80%
+    max-width 1200px
     min-width 320px
     margin: 0 auto
     display flex
@@ -20,6 +27,8 @@
     border-radius 8px
     box-shadow 0 2px 8px var(--shadow-color)
     padding 2rem
+    max-width 100%
+    box-sizing border-box
 
   .post-header
     margin-bottom 2rem
@@ -40,6 +49,8 @@
   .post-content
     flex: 1
     line-height 1.8
+    word-break break-word
+    overflow-wrap break-word
 
     ul, ol
       padding-left: 1.2em
@@ -66,7 +77,48 @@
       border-radius 4px
       margin 1rem 0
 
-    > pre
+    iframe, video, audio
+      max-width 100%
+      border-radius 4px
+      margin 1rem 0
+
+    blockquote
+      margin: 1.5rem 0
+      padding: 0.5rem 1rem
+      border-left: 4px solid var(--secondary-text-color)
+      background-color: var(--secondary-color)
+      color: var(--secondary-text-color)
+      border-radius: 0 4px 4px 0
+      
+      p
+        margin-bottom: 0
+
+    table
+      display block
+      width 100%
+      overflow-x auto
+      border-collapse collapse
+      margin 1.5rem 0
+      
+      th, td
+        padding 0.6rem 1rem
+        border 1px solid var(--shadow-color1)
+        
+      th
+        background-color var(--secondary-color)
+        font-weight bold
+
+    code
+      background var(--secondary-color)
+      color var(--text-color)
+      padding 0.2rem 0.4rem
+      border-radius 3px
+      font-family Consolas, Monaco, Fira Code, monospace
+      font-size 0.9em
+      word-break break-word
+      overflow-wrap break-word
+
+    pre
       width 100%
       height: auto
       background var(--secondary-color)
@@ -79,10 +131,13 @@
       margin 1rem 0
 
       code
-        background var(--secondary-color)
-        color var(--text-color)
-        border-radius 3px
-
+        background transparent
+        color inherit
+        padding 0
+        border-radius 0
+        font-size inherit
+        word-break normal
+        overflow-wrap normal
 
   .post-footer
     margin-top 3rem
@@ -92,17 +147,116 @@
   .post-nav
     display flex
     justify-content space-between
+    gap 1.5rem
+    margin-top 2rem
 
     &-prev, &-next
-      max-width 45%
+      flex 1
+      min-width 0
+      display flex
+      align-items center
+      background var(--secondary-color)
+      border 1px solid var(--shadow-color1)
+      border-radius 12px
+      padding 1rem 1.2rem
+      box-shadow 0 4px 12px var(--shadow-color2)
+      transition all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+      gap 0.8rem
+      text-decoration none
+      cursor pointer
 
-      a
-        color var(--secondary-text-color)
-        text-decoration none
-        transition color 0.3s
+      &:empty
+        display none
 
-        &:hover
+      &:hover
+        transform translateY(-2px)
+        box-shadow 0 8px 24px var(--shadow-color1)
+        border-color var(--secondary-text-color)
+
+        i
           color var(--text-color)
 
+      a
+        flex 1
+        min-width 0
+        display flex
+        flex-direction column
+        color var(--text-color)
+        font-weight 600
+        line-height 1.4
+        font-size 0.95rem
+        transition color 0.3s ease
+        
+        &::before
+          font-size 0.75rem
+          color var(--secondary-text-color)
+          font-weight normal
+          margin-bottom 0.3rem
+          letter-spacing 0.5px
+
       i
-        margin 0 0.5rem
+        font-size 1rem
+        color var(--secondary-text-color)
+        transition all 0.3s ease
+
+    &-prev
+      a::before
+        content '上一篇'
+      &:hover i
+        transform translateX(-4px)
+
+    &-next
+      flex-direction row-reverse
+      text-align right
+      a::before
+        content '下一篇'
+      &:hover i
+        transform translateX(4px)
+
+
+@media (max-width: 768px)
+  .post-page
+    .post-container
+      width 95%
+      padding 1rem 0
+      gap 1rem
+    
+    .post-article
+      padding 1.2rem
+      border-radius 4px
+      
+    .post-header
+      margin-bottom 1.2rem
+      
+    .post-title
+      font-size 1.5rem
+      margin-bottom 0.8rem
+
+    .post-meta
+      gap 0.6rem
+      font-size 0.8rem
+
+    .post-content
+      line-height 1.6
+      
+      h1, h2, h3, h4, h5, h6
+        margin 1.2rem 0 0.8rem
+        
+      p
+        margin-bottom 0.8rem
+
+      blockquote, table, pre, figure.highlight
+        margin 1rem 0
+
+    .post-footer
+      margin-top 2rem
+      padding-top 1.5rem
+      
+    .post-nav
+      flex-direction column
+      gap 1rem
+      
+      &-prev, &-next
+        max-width 100%
+        width 100%
+        padding 0.8rem 1rem
