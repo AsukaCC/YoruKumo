@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 4. 列表与内容卡片进场动画 (Stagger & ScrollTrigger)
   // ==========================================
   // 获取所有需要渐现的组件元素
-  const animItems = gsap.utils.toArray('.timeline-item, .timeline-year-node, .post-list:not(.timeline-wrapper) > a > .postItem, .post-year, .tag-post-item, .tag-item, .about-main > *, .page-title h2');
+  const animItems = gsap.utils.toArray('.timeline-item, .timeline-year-node, .post-list:not(.timeline-wrapper) > a > .postItem, .post-year, .tag-post-item, .tag-item, .page-title h2');
   
   if (animItems.length > 0) {
     const initialItems = [];
@@ -216,14 +216,116 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ==========================================
-  // 6. 关于页面头像特别入场动效
+  // 6. 关于页面信息项高定动效 (About Page Premium Animations)
   // ==========================================
-  const avatar = document.querySelector('.about-avatar');
-  if (avatar) {
-    gsap.fromTo(avatar,
-      { scale: 0.4, opacity: 0, rotation: -10 },
-      { scale: 1, opacity: 1, rotation: 0, duration: 1.2, ease: 'elastic.out(1, 0.7)', delay: 0.4 }
-    );
+  const aboutMain = document.querySelector('.about-main');
+  if (aboutMain) {
+    // 6.1 专属瀑布式入场时间轴 (Entrance Timeline)
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // 1. 头像弹性回弹入场
+    const avatar = document.querySelector('.about-avatar');
+    if (avatar) {
+      tl.fromTo(avatar,
+        { scale: 0.4, opacity: 0, rotation: -12 },
+        { scale: 1, opacity: 1, rotation: 0, duration: 1.2, ease: 'elastic.out(1, 0.75)' }
+      );
+    }
+
+    // 2. 博主姓名渐现上升
+    const name = document.querySelector('.about-name');
+    if (name) {
+      tl.fromTo(name,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        '-=0.8' // 与头像动画重合，使入场节奏紧凑高级
+      );
+    }
+
+    // 3. 个人描述渐现上升
+    const desc = document.querySelector('.about-description');
+    if (desc) {
+      tl.fromTo(desc,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        '-=0.5'
+      );
+    }
+
+    // 4. 信息胶囊卡片瀑布式阶梯滑入
+    const infoItems = document.querySelectorAll('.about-links h3, .about-links .link-item');
+    if (infoItems.length > 0) {
+      tl.fromTo(infoItems,
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+        '-=0.3'
+      );
+    }
+
+    // 6.2 信息胶囊卡片 Hover 磁性微交互 (Hover Micro-interactions)
+    if (config.hover_effect) {
+      const linkItems = document.querySelectorAll('.about-links .link-item');
+      linkItems.forEach(item => {
+        const icon = item.querySelector('.icon');
+        const text = item.querySelector('span, a');
+
+        item.addEventListener('mouseenter', () => {
+          gsap.to(item, {
+            x: 8,
+            scale: 1.03,
+            backgroundColor: 'var(--secondary-color)',
+            borderColor: 'var(--primary-color)',
+            boxShadow: '0 6px 15px var(--shadow-color1)',
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1.15,
+              rotation: 12,
+              color: 'var(--primary-color)',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          }
+          if (text) {
+            gsap.to(text, {
+              color: 'var(--primary-color)',
+              opacity: 1,
+              duration: 0.3
+            });
+          }
+        });
+
+        item.addEventListener('mouseleave', () => {
+          gsap.to(item, {
+            x: 0,
+            scale: 1,
+            backgroundColor: 'var(--main-color)',
+            borderColor: 'rgba(128, 128, 128, 0.1)',
+            boxShadow: '0 4px 10px var(--shadow-color2)',
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1,
+              rotation: 0,
+              color: 'var(--text-color)',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          }
+          if (text) {
+            gsap.to(text, {
+              color: 'var(--text-color)',
+              opacity: 0.8,
+              duration: 0.3
+            });
+          }
+        });
+      });
+    }
   }
 
   // ==========================================

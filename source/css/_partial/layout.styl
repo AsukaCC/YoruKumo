@@ -61,17 +61,13 @@
       & .postItem-tag
         background-color var(--secondary-color)
 
-  & > p
+  .postItem-title
     display -webkit-box
-    -webkit-line-clamp 2
+    -webkit-line-clamp 1
     -webkit-box-orient vertical
     overflow hidden
     text-overflow ellipsis
     word-break break-all
-
-
-  .postItem-title
-    -webkit-line-clamp 1
     font-size 1.5rem
     font-weight 700
 
@@ -97,6 +93,12 @@
     transition background-color 0.3s ease
 
   .postItem-excerpt
+    display -webkit-box
+    -webkit-line-clamp 2
+    -webkit-box-orient vertical
+    overflow hidden
+    text-overflow ellipsis
+    word-break break-all
     font-size 0.8rem
 
 
@@ -110,6 +112,29 @@ body.is-home
     width 95%
     padding 1rem 0
     gap 1rem
+
+  .postItem
+    padding 1rem 0.8rem
+    gap 0.6rem
+
+    .postItem-title
+      font-size 1.2rem
+      -webkit-line-clamp 2
+
+    .postItem-date
+      font-size 0.75rem
+
+    .postItem-tags
+      gap 0.4rem
+
+    .postItem-tag
+      font-size 0.7rem
+      padding 0.15rem 0.4rem
+      border-radius 0.3rem
+
+    .postItem-excerpt
+      font-size 0.75rem
+      -webkit-line-clamp 3
 
 
 

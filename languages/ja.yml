@@ -43,8 +43,8 @@ about:
 
 stats:
   all: すべて
-  yearToCategory: 年 ➔ カテゴリー
-  categoryToTag: カテゴリー ➔ タグ
+  yearToCategory: 年
+  categoryToTag: カテゴリー
   tip: 'ヒント：年、カテゴリー、またはタグをクリックすると、対応するアーカイブページにジャンプします'
   loading: チャート読み込み中...
   noArticles: 記事データがありません

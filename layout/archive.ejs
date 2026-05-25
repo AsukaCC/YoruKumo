@@ -1,33 +1,30 @@
 <!-- 获取要显示的文章 (直接取 Hexo 生成好的 page.posts 并按时间排序) -->
 <% var postsToShow = page.posts ? page.posts.sort('-date') : site.posts.sort('-date'); %>
 
+<%
+  var archiveTitle = __('post.list');
+  if (page.category) {
+    archiveTitle = page.category;
+  } else if (page.tag) {
+    archiveTitle = page.tag;
+  } else if (page.archive) {
+    if (page.year) {
+      archiveTitle = page.year + (page.month ? '-' + page.month : '');
+    } else {
+      archiveTitle = __('menu.Archive');
+    }
+  }
+%>
+
 <!-- 头部 -->
 <%- partial('_partial/header',{}, {cache: true}) %>
 
 <!-- 页面内容 -->
 <div class="page-content">
-  <div class="page-title">
-    <h2>
-      <% if (is_category()) { %>
-        <%= __('menu.Category') %>: <%- page.category %>
-      <% } else if (is_tag()) { %>
-        <%= __('menu.Tag') %>: <%- page.tag %>
-      <% } else if (is_archive()) { %>
-        <% if (page.year) { %>
-          <%- page.year %> <%= __('menu.Archive') %>
-        <% } else { %>
-          <%= __('menu.Archive') %>
-        <% } %>
-      <% } else { %>
-        <%= __('menu.Archive') %>
-      <% } %>
-    </h2>
-  </div>
-
   <div class="sankey-archive-container" style="margin-top: 1.5rem;">
     <div class="sankey-articles-section" style="margin-top: 0;">
       <h3 class="articles-section-title">
-        <span class="title-text"><%= __('post.list') %></span>
+        <span class="title-text"><%= archiveTitle %></span>
         <span class="articles-count-badge"><%= __('post.count', postsToShow.length) %></span>
       </h3>
       

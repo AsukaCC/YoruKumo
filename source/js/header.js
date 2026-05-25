@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // 菜单关闭时，立即执行 handleScroll 以恢复正确的滚动状态样式
       if (navMenu.classList.contains('active')) {
         header.className = 'header-mobile';
+        document.body.style.overflow = 'hidden';
       } else {
+        document.body.style.overflow = '';
         handleScroll();
       }
     });
@@ -49,8 +51,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (navMenu.classList.contains('active')) {
           navMenu.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
           handleScroll(); // 关闭时立即恢复正常的滚动状态样式
         }
+      }
+    });
+
+    // 监听窗口大小变化，防呆处理：如果用户在移动端打开菜单后，将窗口拉大到桌面端，应自动重置状态
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        handleScroll();
       }
     });
   }

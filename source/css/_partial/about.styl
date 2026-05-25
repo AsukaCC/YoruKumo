@@ -53,6 +53,13 @@
       &:hover
         transform scale(1.05)
 
+  .about-name
+    font-size 1.8rem
+    font-weight 600
+    color var(--text-color)
+    margin 0 auto 2rem
+    text-align center
+
   .about-description
     margin-bottom 3rem
 
@@ -114,30 +121,46 @@
 
   .links-section
     margin-bottom: 2rem
-    padding-left: 1rem
+    padding-left: 0
+    display: flex
+    flex-wrap: wrap
+    gap: 1rem
 
   .link-item
     display: flex
     align-items: center
-    margin-bottom: 1rem
-    transition: all 0.3s ease
-
-    &:hover
-      transform: translateX(5px)
+    padding: 0.6rem 1.2rem
+    border-radius: 16px
+    background: var(--main-color)
+    border: 1px solid rgba(128, 128, 128, 0.1)
+    box-shadow: 0 4px 10px var(--shadow-color2)
+    transition: border-color 0.3s ease, box-shadow 0.3s ease
 
     .icon
       width: 1.5rem
       height: 1.5rem
-      margin-right: 1rem
+      margin-right: 0.75rem
       color: var(--text-color)
+      transition: color 0.3s ease
 
     span, a
-      font-size: 1rem
+      font-size: 0.95rem
       color: var(--text-color)
       opacity: 0.8
+      transition: color 0.3s ease
 
     a
       text-decoration: none
       &:hover
         color: var(--primary-color)
         opacity: 1
+
+// FOUC Prevention: hide elements while GSAP is loading, unless no-gsap is present
+html:not(.no-gsap)
+  .about-avatar
+  .about-name
+  .about-description
+  .about-links h3
+  .about-links .link-item
+    opacity 0
+    will-change transform, opacity

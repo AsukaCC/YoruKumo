@@ -44,8 +44,8 @@ about:
 
 stats:
   all: All
-  yearToCategory: Year ➔ Category
-  categoryToTag: Category ➔ Tag
+  yearToCategory: Year
+  categoryToTag: Category
   tip: 'Tip: Click on a year, category, or tag to view its archive page'
   loading: Loading chart...
   noArticles: No article data available

@@ -102,22 +102,44 @@
 
 .menu-toggle
   display none
-  flex-direction column
-  justify-content space-between
-  width 2rem
-  height 2rem
+  position relative
+  width 1.5rem
+  height 1.5rem
   background none
   border none
   cursor pointer
   padding 0
   color var(--text-color)
+  z-index 1001
 
-  span
-    display block
+  span.line
+    position absolute
+    left 0
     width 100%
-    height 3px
+    height 2px
     background-color var(--text-color)
-    transition all 0.3s ease
+    border-radius 2px
+    transition all 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+
+    &.line-1
+      top 25%
+    &.line-2
+      top 50%
+      transform translateY(-50%)
+    &.line-3
+      top 75%
+      transform translateY(-100%)
+
+  &[aria-expanded="true"]
+    .line-1
+      top 50%
+      transform translateY(-50%) rotate(45deg)
+    .line-2
+      opacity 0
+      transform translateY(-50%) scale(0)
+    .line-3
+      top 50%
+      transform translateY(-50%) rotate(-45deg)
 
 // ==========================================
 // 三端自适应兼容设计 (手机、平板、电脑)
@@ -149,50 +171,85 @@
     font-size 1.3rem
 
   .menu-toggle
-    display flex
-    align-items center
-    justify-content center
+    display block
 
   .nav-menu
     position absolute
     top 100%
     left 0
     right 0
-    height 0
-    overflow hidden
-    transition height 0.3s ease
+    height calc(100vh - 4rem)
+    opacity 0
+    visibility hidden
+    transform translateY(-10px)
+    transition opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+               transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+               visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1)
     // 手机端菜单背景高斯模糊 (Glassmorphism)，质感统一
-    background: var(--header-bg)
+    background: var(--mobile-menu-bg)
     backdrop-filter: blur(20px) saturate(180%)
     -webkit-backdrop-filter: blur(20px) saturate(180%)
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05)
 
     &.active
-      height calc(100vh - 4rem)
+      opacity 1
+      visibility visible
+      transform translateY(0)
 
   .nav-list
     width 100%
-    height 100%
+    height auto
     flex-direction column
-    gap 1rem
-    padding 2rem 0 // 添加上下边距
+    gap 0.75rem
+    padding 3rem 2rem
+
+    li
+      width 100%
+      list-style none
 
     a
-      display inline-block
+      display flex
+      align-items center
+      justify-content center
       width 100%
-      font-size 1.2rem
+      font-size 1.25rem
+      font-weight 600
       text-align center
-      padding 1rem
+      padding 0.8rem 1.5rem
+      border-radius 12px
+      transition all 0.3s cubic-bezier(0.16, 1, 0.3, 1)
+      color var(--text-color)
+      position relative
 
       &::after
-        left 25%
-        width 0
+        display none !important
 
-      &:hover::after
-        width 0
+      // 移动端使用精致的圆角药丸悬停/轻触反馈背景
+      &:hover, &:active
+        background var(--shadow-color2)
+        transform translateY(-2px)
+        color var(--text-color)
 
-      &.active::after
-        width 50%
+      &.active
+        background var(--shadow-color1)
+        color var(--text-color)
+        font-weight bold
+
+  // 菜单项波浪式渐现动效 (Staggered Entrance Animation)
+  @keyframes menuFadeIn
+    from
+      opacity 0
+      transform translateY(15px)
+    to
+      opacity 1
+      transform translateY(0)
+
+  .nav-menu.active
+    .nav-list li
+      animation menuFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both
+      
+      for i in (1..8)
+        &:nth-child({i})
+          animation-delay (0.05s * i)
 
 
 

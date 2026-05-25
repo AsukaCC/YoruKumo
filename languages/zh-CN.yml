@@ -43,8 +43,8 @@ about:
 
 stats:
   all: 全部
-  yearToCategory: 年份 ➔ 分类
-  categoryToTag: 分类 ➔ 标签
+  yearToCategory: 年份
+  categoryToTag: 分类
   tip: '提示：点击年份、分类或标签可跳转查看对应归档页面'
   loading: 图表加载中...
   noArticles: 无文章数据

@@ -10,7 +10,24 @@
   <%- favicon_tag(theme.favicon) %><%- css('css/style') %>
 
   <!-- activeTitle -->
-  <% var activeTitle = page.title || __('activeTitle'); %>
+  <% 
+    var activeTitle = page.title;
+    if (!activeTitle) {
+      if (page.category) {
+        activeTitle = page.category;
+      } else if (page.tag) {
+        activeTitle = page.tag;
+      } else if (page.archive) {
+        if (page.year) {
+          activeTitle = page.year + (page.month ? '-' + page.month : '');
+        } else {
+          activeTitle = __('menu.Archive');
+        }
+      } else {
+        activeTitle = __('activeTitle');
+      }
+    }
+  %>
   <!-- inactiveTitle -->
   <% var inactiveTitle = __('inactiveTitle'); %>
 

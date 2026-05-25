@@ -55,15 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateViewVisibility() {
     const chartCard = document.getElementById('sankey-chart-card');
     const articlesSection = document.getElementById('sankey-articles-section');
-    const infoPanel = document.getElementById('sankey-info-panel');
 
     if (currentView === 'all') {
       if (chartCard) chartCard.style.display = 'none';
-      if (infoPanel) infoPanel.style.display = 'none';
       if (articlesSection) articlesSection.style.display = 'block';
     } else {
       if (chartCard) chartCard.style.display = 'block';
-      if (infoPanel) infoPanel.style.display = 'block';
       if (articlesSection) articlesSection.style.display = 'none';
     }
   }

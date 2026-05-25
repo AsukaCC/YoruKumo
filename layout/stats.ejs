@@ -57,10 +57,6 @@
 </script>
 
 <div class="tag-index-page page-content">
-  <div class="page-title">
-    <h2><%- __('menu.Stats') %></h2>
-  </div>
-
   <div class="sankey-archive-container">
     <!-- 控制栏 -->
     <div class="sankey-controls">
@@ -68,10 +64,6 @@
         <button class="sankey-tab active" data-view="all"><%= __('stats.all') %></button>
         <button class="sankey-tab" data-view="year-category"><%= __('stats.yearToCategory') %></button>
         <button class="sankey-tab" data-view="category-tag"><%= __('stats.categoryToTag') %></button>
-      </div>
-      <div class="sankey-info" id="sankey-info-panel" style="display: none;">
-        <i class="fas fa-info-circle" style="color: var(--secondary-text-color); font-size: 0.95rem;"></i>
-        <span class="active-filter-value"><%= __('stats.tip') %></span>
       </div>
     </div>
 
