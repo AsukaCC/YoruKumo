@@ -1,14 +1,17 @@
 <footer class="footer-container">
   <div class="footer-content">
     <p class="footer-text">
-      <%= __('website.footer.reserved') %> @
-      <a href="<%= theme.footer.authorLink %>" target="_blank"
-        ><%= __('website.footer.author') %></a
-      >
+      © <%= new Date().getFullYear() %>
+      <a href="<%= theme.footer.authorLink %>" target="_blank"><%= theme.about.name %></a>.
+      All Rights Reserved.
     </p>
     <p class="footer-text">
-      <%= __('website.footer.powered') %>
-      <span id="runtime"></span>
+      Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme by 
+      <a href="<%= theme.footer.themeLink %>" target="_blank">YoruKumo</a>
+    </p>
+    <p class="footer-text">
+      <span><%= __('footer.runtime') %></span>
+      <span id="runtime" class="runtime-badge"></span>
     </p>
   </div>
 </footer>
@@ -27,10 +30,10 @@
     const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-    const dayStr = '<%= __("website.footer.day") %>';
-    const hourStr = '<%= __("website.footer.hour") %>';
-    const minuteStr = '<%= __("website.footer.minute") %>';
-    const secondStr = '<%= __("website.footer.second") %>';
+    const dayStr = '<%= __("footer.day") %>';
+    const hourStr = '<%= __("footer.hour") %>';
+    const minuteStr = '<%= __("footer.minute") %>';
+    const secondStr = '<%= __("footer.second") %>';
 
     document.getElementById(
       'runtime'
@@ -42,3 +45,4 @@
   // 每秒更新一次
   setInterval(calculateRuntime, 1000);
 </script>
+

@@ -1,24 +1,6 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`) そっと見守る'
 
-website:
-  title: タイトル
-  description: 説明
-  keywords: キーワード
-  author:
-    name: Plutavian
-    title: 著者
-    description: フルスタックエンジニア
-
-  footer:
-    reserved: All Rights Reserved
-    powered: Hexo により駆動
-    runningTime: 稼働時間
-    day: " 日 "
-    hour: " 時間 "
-    minute: " 分 "
-    second: " 秒"
-
 menu:
   Home: ホーム
   Posts: 記事
@@ -28,11 +10,7 @@ menu:
   Archive: アーカイブ
   Tag: タグ
 
-home:
-  title: 最新記事
-
 post:
-  title: 記事
   list: 記事一覧
   count: '%s 件'
   untitled: '(無題)'
@@ -40,6 +18,8 @@ post:
 about:
   contact: 連絡先
   social: ソーシャルメディア
+  copied: 'コピーしました！'
+  copy_failed: 'コピーに失敗しました。手動でコピーしてください。'
 
 stats:
   all: すべて
@@ -57,3 +37,10 @@ stats:
   tagCategory: タグ
   containsArticles: '含まれる記事：'
   clickHint: クリックして対応するアーカイブを表示
+
+footer:
+  runtime: '稼働時間'
+  day: ' 日 '
+  hour: ' 時間 '
+  minute: ' 分 '
+  second: ' 秒'

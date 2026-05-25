@@ -21,21 +21,21 @@
       <h3><%= __('about.contact') %></h3>
       <div class="links-section">
         <% if (theme.about.email) { %>
-        <div class="link-item">
+        <div class="link-item copy-btn" data-copy="<%= theme.about.email %>">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-youxiang"></use>
           </svg>
           <span><%= theme.about.email %></span>
         </div>
         <% } %> <% if (theme.about.wechat) { %>
-        <div class="link-item">
+        <div class="link-item copy-btn" data-copy="<%= theme.about.wechat %>">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-icon"></use>
           </svg>
           <span><%= theme.about.wechat %></span>
         </div>
         <% } %> <% if (theme.about.qq) { %>
-        <div class="link-item">
+        <div class="link-item copy-btn" data-copy="<%= theme.about.qq %>">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-QQ"></use>
           </svg>
@@ -66,3 +66,79 @@
     </div>
   </main>
 </div>
+
+<script>
+  window.ABOUT_TRANSLATIONS = {
+    copied: '<%= __("about.copied") %>',
+    copy_failed: '<%= __("about.copy_failed") %>'
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const copyButtons = document.querySelectorAll('.about-links .copy-btn');
+    if (copyButtons.length === 0) return;
+
+    // 创建 toast 容器 (Create toast container if it doesn't exist)
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.className = 'toast-container';
+      document.body.appendChild(toastContainer);
+    }
+
+    function showToast(message, isSuccess = true) {
+      const toast = document.createElement('div');
+      toast.className = `toast-item ${isSuccess ? 'success' : 'error'}`;
+
+      const iconSvg = isSuccess
+        ? '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
+
+      toast.innerHTML = `
+        <div class="toast-icon">${iconSvg}</div>
+        <div class="toast-text">${message}</div>
+      `;
+
+      toastContainer.appendChild(toast);
+
+      // 触发重绘以启动动画
+      toast.offsetHeight;
+      toast.classList.add('show');
+
+      // 2秒后淡出并移除
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          toast.remove();
+        }, 400);
+      }, 2000);
+    }
+
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const textToCopy = this.getAttribute('data-copy');
+        if (!textToCopy) return;
+
+        navigator.clipboard.writeText(textToCopy).then(
+          function () {
+            const successMsg = window.ABOUT_TRANSLATIONS.copied || '已复制到剪贴板！';
+            showToast(successMsg, true);
+
+            // GSAP 弹性点按反馈
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(btn,
+                { scale: 0.95 },
+                { scale: 1.03, duration: 0.4, ease: 'elastic.out(1.2, 0.5)', overwrite: 'auto' }
+              );
+            }
+          },
+          function (err) {
+            console.error('Failed to copy: ', err);
+            const failMsg = window.ABOUT_TRANSLATIONS.copy_failed || '复制失败，请手动复制';
+            showToast(failMsg, false);
+          }
+        );
+      });
+    });
+  });
+</script>
+

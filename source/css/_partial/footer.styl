@@ -1,7 +1,40 @@
 .footer-container
   background var(--secondary-color)
-  padding 1rem
+  padding 2rem 1rem
   text-align center
+  border-top 1px solid rgba(128, 128, 128, 0.08)
+
+.footer-content
+  max-width 800px
+  margin 0 auto
   display flex
-  justify-content center
-  align-items center
+  flex-direction column
+  gap 0.5rem
+
+.footer-text
+  font-size 0.9rem
+  color var(--secondary-text-color)
+  margin 0
+
+  a
+    color var(--primary-color)
+    text-decoration none
+    transition color 0.3s ease
+    font-weight 500
+
+    &:hover
+      text-decoration underline
+      color var(--secondary-text-color)
+
+.runtime-badge
+  display inline-block
+  padding 0.2rem 0.6rem
+  background var(--main-color)
+  border 1px solid rgba(128, 128, 128, 0.1)
+  border-radius 12px
+  font-size 0.85rem
+  color var(--text-color)
+  margin-left 0.4rem
+  box-shadow 0 2px 6px var(--shadow-color2)
+  font-family monospace
+

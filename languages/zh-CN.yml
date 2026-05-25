@@ -1,23 +1,6 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`)暗中观察'
 
-website:
-  title: 标题
-  description: 描述
-  keywords: 关键词
-  author:
-    name: 江城
-    title: 作者
-    description: 全栈开发工程师
-
-  footer:
-    reserved: 版权所有
-    powered: 由 Hexo 驱动
-    runningTime: 运行时间
-    day: " 天 "
-    hour: " 小时 "
-    minute: " 分 "
-    second: " 秒"
 
 menu:
   Home: 首页
@@ -28,11 +11,7 @@ menu:
   Archive: 归档
   Tag: 标签
 
-home:
-  title: 最近更新
-
 post:
-  title: 文章
   list: 文章列表
   count: '%s 篇'
   untitled: '(无标题)'
@@ -40,6 +19,9 @@ post:
 about:
   contact: 联系方式
   social: 社交平台
+  copied: "复制成功！"
+  copy_failed: "复制失败，请手动复制"
+
 
 stats:
   all: 全部
@@ -57,3 +39,11 @@ stats:
   tagCategory: 标签类别
   containsArticles: '包含文章：'
   clickHint: 点击可跳转查看对应归档
+
+footer:
+  runtime: "本站已运行"
+  day: " 天 "
+  hour: " 小时 "
+  minute: " 分 "
+  second: " 秒"
+

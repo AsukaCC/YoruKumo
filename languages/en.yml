@@ -1,24 +1,6 @@
 activeTitle: 《-biubiu-⊂(`ω´∩)
 inactiveTitle: '|ω･`) Fly on the Wall'
 
-website:
-  title: Title
-  description: Description
-  keywords: Keywords
-  author:
-    name: Plutavian
-    title: Author
-    description: Full Stack Developer
-
-  footer:
-    reserved: Reserved
-    author: Plutavian
-    powered: Powered by Hexo
-    runningTime: Running Time
-    day: " days "
-    hour: " hours "
-    minute: " minutes "
-    second: " seconds"
 
 menu:
   Home: Home
@@ -29,11 +11,7 @@ menu:
   Archive: Archive
   Tag: Tag
 
-home:
-  title: Recent Updates
-
 post:
-  title: Post
   list: Articles
   count: '%s posts'
   untitled: '(Untitled)'
@@ -41,6 +19,9 @@ post:
 about:
   contact: Contact
   social: Social Platforms
+  copied: "Copied successfully!"
+  copy_failed: "Failed to copy, please copy manually"
+
 
 stats:
   all: All
@@ -58,3 +39,11 @@ stats:
   tagCategory: Tag Category
   containsArticles: 'Contains articles: '
   clickHint: Click to view the corresponding archive
+
+footer:
+  runtime: "Running for"
+  day: " days "
+  hour: " hours "
+  minute: " minutes "
+  second: " seconds"
+
