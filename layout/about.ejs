@@ -48,19 +48,19 @@
       <h3><%= __('about.social') %></h3>
       <div class="links-section">
         <% if (theme.about.github) { %>
-        <div class="link-item">
+        <a href="<%= theme.about.github %>" target="_blank" class="link-item">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github"></use>
           </svg>
-          <a href="<%= theme.about.github %>" target="_blank">GitHub</a>
-        </div>
+          <span>GitHub</span>
+        </a>
         <% } %> <% if (theme.about.linkedin) { %>
-        <div class="link-item">
+        <a href="<%= theme.about.linkedin %>" target="_blank" class="link-item">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-linkedin"></use>
           </svg>
-          <a href="<%= theme.about.linkedin %>" target="_blank">LinkedIn</a>
-        </div>
+          <span>LinkedIn</span>
+        </a>
         <% } %>
       </div>
     </div>

@@ -134,7 +134,25 @@
     background: var(--main-color)
     border: 1px solid rgba(128, 128, 128, 0.1)
     box-shadow: 0 4px 10px var(--shadow-color2)
-    transition: border-color 0.3s ease, box-shadow 0.3s ease
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease
+    text-decoration: none
+    color: var(--text-color)
+
+    &[href]
+      cursor: pointer
+
+      &:hover
+        border-color: var(--primary-color)
+        box-shadow: 0 6px 15px var(--shadow-color1)
+        text-decoration: none
+        transform: translateY(-2px)
+
+        span
+          color: var(--primary-color)
+          opacity: 1
+
+        .icon
+          color: var(--primary-color)
 
     .icon
       width: 1.5rem
@@ -143,17 +161,11 @@
       color: var(--text-color)
       transition: color 0.3s ease
 
-    span, a
+    span
       font-size: 0.95rem
       color: var(--text-color)
       opacity: 0.8
-      transition: color 0.3s ease
-
-    a
-      text-decoration: none
-      &:hover
-        color: var(--primary-color)
-        opacity: 1
+      transition: color 0.3s ease, opacity 0.3s ease
 
 // FOUC Prevention: hide elements while GSAP is loading, unless no-gsap is present
 html:not(.no-gsap)
