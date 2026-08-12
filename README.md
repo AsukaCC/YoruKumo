@@ -1,3 +1,5 @@
+
+
 # Hexo 主题 YoruKumo (夜云)
 
 <p align="center">
@@ -78,7 +80,19 @@ logo:                          # 自定义 Logo 图片路径（留空则显示 t
 title: YoruKumo                # 站点文字标题
 ```
 
-### 3. 社交与关于页面
+### 3. 菜单配置 (`menu`)
+
+您可以在配置文件中自定义导航栏的菜单项及其对应的路由链接：
+
+```yaml
+menu:
+  Home: /
+  Posts: /posts
+  Stats: /stats
+  About: /about
+```
+
+### 4. 社交与关于页面
 
 关于页面的联系方式与社交链接可在配置中自由定制：
 
@@ -94,7 +108,7 @@ about:
   linkedin: 'https://www.linkedin.com'
 ```
 
-### 4. 运行时间页脚
+### 5. 运行时间页脚
 
 在 `footer` 配置中指定 `since`，页脚就会显示出您的网站自该日期起已运行了多久：
 
@@ -104,7 +118,7 @@ footer:
   authorLink: https://github.com/asukacc
 ```
 
-### 5. 多语言本地化支持 (`language`)
+### 6. 多语言本地化支持 (`language`)
 
 YoruKumo 完美支持国际化本地化，能够自动翻译页面标题、系统菜单、页脚运行时间单位、以及 D3.js 桑基图的全部交互文本。
 
